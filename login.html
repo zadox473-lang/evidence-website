@@ -1,159 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login | Evidence.gg</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #0a0c12;
-            color: #e2e8f0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .login-container {
-            background: #111827;
-            border: 1px solid #1f2937;
-            border-radius: 12px;
-            padding: 40px;
-            width: 100%;
-            max-width: 400px;
-        }
-        .logo {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #718096;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #a0aec0;
-            font-size: 14px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            background: #0d1117;
-            border: 1px solid #1f2937;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-        }
-        .input-group input:focus {
-            border-color: #4299e1;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background: transparent;
-            border: 1px solid #4299e1;
-            border-radius: 6px;
-            color: #4299e1;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:hover {
-            background: rgba(66, 153, 225, 0.1);
-        }
-        .error {
-            color: #dc2626;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 13px;
-        }
-        .back-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .back-link a {
-            color: #718096;
-            text-decoration: none;
-            font-size: 13px;
-        }
-        .back-link a:hover {
-            color: #4299e1;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/auth.js"></script>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">EVIDENCE.GG</div>
-        <div class="subtitle">Admin Login</div>
-        
-        <div class="input-group">
-            <label>Email</label>
-            <input type="email" id="email" placeholder="admin@evidence.gg">
-        </div>
-        
-        <div class="input-group">
-            <label>Password</label>
-            <input type="password" id="password" placeholder="••••••••">
-        </div>
-        
-        <button onclick="login()">Login</button>
-        
-        <div class="error" id="errorMsg"></div>
-        
-        <div class="back-link">
-            <a href="index.html">← Back to Database</a>
-        </div>
-    </div>
+  <div class="login-box card">
+    <h1>Admin Login</h1>
 
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyCkMVWQ4NCqV7yJIUwBwu2NImetw7zUJeY",
-            authDomain: "scammer-database.firebaseapp.com",
-            projectId: "scammer-database",
-            storageBucket: "scammer-database.firebasestorage.app",
-            messagingSenderId: "257014278130",
-            appId: "1:257014278130:web:1c527b320f36b4d6c5ed6b"
-        };
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
 
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+    <button id="loginBtn">Login</button>
 
-        async function login() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('errorMsg');
-            
-            if (!email || !password) {
-                errorDiv.innerText = 'Please enter email and password';
-                return;
-            }
-            
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-                window.location.href = 'admin.html';
-            } catch (error) {
-                errorDiv.innerText = 'Invalid email or password';
-            }
-        }
-    </script>
+    <a href="index.html">Back to Home</a>
+  </div>
 </body>
 </html>
