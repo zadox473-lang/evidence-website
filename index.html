@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Evidence.gg | Scammer Database</title>
     <style>
         * {
@@ -12,119 +12,107 @@
         }
 
         body {
-            font-family: 'Poppins', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(135deg, #0a0a1a 0%, #0f0f2a 50%, #0a0a1a 100%);
             min-height: 100vh;
             color: #fff;
         }
 
-        /* Neon Glow Effect */
         @keyframes glow {
-            0% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
-            100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.5); }
+            0% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); }
+            100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Header */
         .header {
             background: rgba(10, 10, 26, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 255, 255, 0.3);
-            padding: 20px 0;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 22px;
             font-weight: 800;
-            background: linear-gradient(135deg, #00ffff, #0066ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: 2px;
+            text-align: center;
         }
 
-        .logo span {
+        .logo .blue {
             color: #00ffff;
             text-shadow: 0 0 10px #00ffff;
         }
 
-        /* Statistics Cards */
+        .subtitle {
+            text-align: center;
+            font-size: 11px;
+            color: #00ffff;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0;
         }
 
         .stat-card {
             background: rgba(15, 25, 45, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 255, 255, 0.3);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 16px;
+            padding: 18px;
             text-align: center;
-            transition: all 0.3s ease;
-            animation: float 3s ease-in-out infinite;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
             border-color: #00ffff;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            animation: glow 1s ease-in-out;
         }
 
         .stat-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 28px;
+            margin-bottom: 8px;
         }
 
         .stat-value {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 800;
             color: #00ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         .stat-label {
-            font-size: 14px;
+            font-size: 11px;
             color: #8892b0;
-            margin-top: 10px;
-            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
-        /* Search Bar */
         .search-container {
-            margin: 30px 0 40px;
+            margin: 25px 0;
         }
 
         .search-box {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             background: rgba(15, 25, 45, 0.8);
             border: 1px solid rgba(0, 255, 255, 0.3);
-            border-radius: 60px;
-            padding: 8px 8px 8px 25px;
-            transition: all 0.3s ease;
+            border-radius: 50px;
+            padding: 5px 5px 5px 18px;
         }
 
         .search-box:focus-within {
             border-color: #00ffff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
         }
 
         .search-box input {
@@ -132,7 +120,7 @@
             background: transparent;
             border: none;
             color: #fff;
-            font-size: 16px;
+            font-size: 14px;
             outline: none;
         }
 
@@ -144,49 +132,38 @@
             background: linear-gradient(135deg, #00ffff, #0066ff);
             border: none;
             border-radius: 50px;
-            padding: 12px 30px;
+            padding: 10px 20px;
             color: #fff;
             font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
-        .search-box button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        /* Section Title */
         .section-title {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 700;
-            margin: 30px 0 20px;
-            padding-bottom: 10px;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
             border-bottom: 2px solid rgba(0, 255, 255, 0.3);
             display: inline-block;
         }
 
-        /* Scammer Cards */
         .scammers-grid {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            margin: 20px 0;
+            gap: 15px;
+            margin: 15px 0;
         }
 
         .scammer-card {
             background: rgba(15, 25, 45, 0.6);
-            backdrop-filter: blur(5px);
             border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px;
-            transition: all 0.3s ease;
+            border-radius: 14px;
+            padding: 15px;
         }
 
         .scammer-card:hover {
             border-color: #00ffff;
-            transform: translateX(5px);
-            background: rgba(20, 30, 50, 0.8);
         }
 
         .card-header {
@@ -194,56 +171,55 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 12px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .scammer-username {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #ff4444;
         }
 
         .scammer-id {
-            font-size: 14px;
+            font-size: 12px;
             color: #8892b0;
-            font-family: monospace;
         }
 
         .amount {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             color: #00ff88;
         }
 
         .summary {
             color: #a0aec0;
-            font-size: 14px;
-            line-height: 1.5;
-            margin: 12px 0;
+            font-size: 13px;
+            line-height: 1.4;
+            margin: 10px 0;
         }
 
         .card-buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 12px;
         }
 
         .btn {
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
             text-decoration: none;
             display: inline-block;
+            text-align: center;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #00ffff, #0066ff);
             color: #fff;
+            border: none;
         }
 
         .btn-outline {
@@ -252,87 +228,64 @@
             color: #00ffff;
         }
 
-        .btn-outline:hover {
-            background: rgba(0, 255, 255, 0.1);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-        }
-
-        /* Pagination */
         .pagination {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin: 40px 0;
+            gap: 8px;
+            margin: 30px 0;
             flex-wrap: wrap;
         }
 
-        .pagination button, .pagination a {
+        .pagination button {
             background: rgba(15, 25, 45, 0.8);
             border: 1px solid rgba(0, 255, 255, 0.3);
-            padding: 10px 16px;
+            padding: 8px 14px;
             border-radius: 8px;
             color: #fff;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
+            font-size: 14px;
         }
 
-        .pagination button:hover, .pagination a:hover {
-            border-color: #00ffff;
-            background: rgba(0, 255, 255, 0.1);
-        }
-
-        .pagination .active {
+        .pagination button.active {
             background: linear-gradient(135deg, #00ffff, #0066ff);
             border-color: transparent;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             border-top: 1px solid rgba(0, 255, 255, 0.2);
-            margin-top: 50px;
+            margin-top: 30px;
+            font-size: 12px;
             color: #4a5568;
         }
 
-        /* Loading */
         .loading {
             text-align: center;
-            padding: 50px;
+            padding: 40px;
             color: #00ffff;
         }
 
-        /* Admin Link (hidden by default) */
         .admin-link {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 255, 255, 0.2);
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0, 255, 255, 0.15);
             border-radius: 50px;
-            padding: 10px 20px;
-            font-size: 12px;
+            padding: 6px 14px;
+            font-size: 11px;
             text-decoration: none;
             color: #00ffff;
             z-index: 100;
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
             }
-            .card-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .search-box {
-                flex-direction: column;
-                border-radius: 20px;
-                padding: 15px;
-            }
-            .search-box button {
-                width: 100%;
+            .stat-value {
+                font-size: 32px;
             }
         }
     </style>
@@ -342,14 +295,13 @@
     <div class="header">
         <div class="container">
             <div class="logo">
-                🔷 <span>EVIDENCE.GG</span> 🔷
+                <span class="blue">🔷 EVIDENCE.GG 🔷</span>
             </div>
-            <div style="font-size: 12px; color: #00ffff; margin-top: 5px;">SCAMMER DATABASE</div>
+            <div class="subtitle">SCAMMER DATABASE</div>
         </div>
     </div>
 
     <div class="container">
-        <!-- Statistics Section -->
         <div class="stats-grid" id="statsContainer">
             <div class="stat-card">
                 <div class="stat-icon">📊</div>
@@ -373,7 +325,6 @@
             </div>
         </div>
 
-        <!-- Search Section -->
         <div class="search-container">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="🔍 Search by username or ID...">
@@ -381,13 +332,11 @@
             </div>
         </div>
 
-        <!-- Scammers List Section -->
         <div class="section-title">📋 RECENT SCAM REPORTS</div>
         <div id="scammersList" class="scammers-grid">
             <div class="loading">Loading data...</div>
         </div>
 
-        <!-- Pagination -->
         <div class="pagination" id="pagination"></div>
     </div>
 
@@ -397,34 +346,31 @@
 
     <a href="login.html" class="admin-link">👑 Admin Portal</a>
 
-    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
     <script>
-        // ========== FIREBASE CONFIG (YAHAN APNI CONFIG PASTE KARO) ==========
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyCkMVWQ4NCqV7yJIUwBwu2NImetw7zUJeY",
+            authDomain: "scammer-database.firebaseapp.com",
+            projectId: "scammer-database",
+            storageBucket: "scammer-database.firebasestorage.app",
+            messagingSenderId: "257014278130",
+            appId: "1:257014278130:web:1c527b320f36b4d6c5ed6b"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Global variables
         let allReports = [];
         let currentPage = 1;
         const reportsPerPage = 10;
 
-        // Load data from Firebase
         async function loadReports() {
             try {
+                document.getElementById('scammersList').innerHTML = '<div class="loading">📡 Fetching data...</div>';
+                
                 const snapshot = await db.collection('reports')
                     .where('status', '==', 'approved')
                     .orderBy('timestamp', 'desc')
@@ -438,23 +384,19 @@
                 updateStatistics();
                 displayReports();
             } catch (error) {
-                console.error("Error loading reports:", error);
-                document.getElementById('scammersList').innerHTML = '<div class="loading">⚠️ Error loading data. Make sure Firebase is configured correctly.</div>';
+                document.getElementById('scammersList').innerHTML = '<div class="loading">⚠️ Error loading data.</div>';
             }
         }
 
-        // Update statistics
         function updateStatistics() {
             const totalReports = allReports.length;
             
-            // Unique scammers
             const uniqueScammers = new Set();
             allReports.forEach(r => {
                 if (r.user_id) uniqueScammers.add(r.user_id);
                 if (r.username) uniqueScammers.add(r.username);
             });
             
-            // Total amount
             let totalAmountNum = 0;
             allReports.forEach(r => {
                 let amountStr = r.amount || "$0";
@@ -462,7 +404,6 @@
                 if (!isNaN(num)) totalAmountNum += num;
             });
             
-            // Top scammer (by amount)
             let topScammer = "-";
             let topAmount = 0;
             const scammerMap = new Map();
@@ -476,7 +417,7 @@
             for (let [name, amount] of scammerMap) {
                 if (amount > topAmount) {
                     topAmount = amount;
-                    topScammer = name.length > 15 ? name.substring(0, 12) + '...' : name;
+                    topScammer = name.length > 12 ? name.substring(0, 10) + '..' : name;
                 }
             }
             
@@ -486,7 +427,6 @@
             document.getElementById('topScammer').innerHTML = topScammer;
         }
 
-        // Display reports with pagination
         function displayReports() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             let filtered = allReports;
@@ -500,8 +440,7 @@
             
             const totalPages = Math.ceil(filtered.length / reportsPerPage);
             const start = (currentPage - 1) * reportsPerPage;
-            const end = start + reportsPerPage;
-            const paginatedReports = filtered.slice(start, end);
+            const paginatedReports = filtered.slice(start, start + reportsPerPage);
             
             const container = document.getElementById('scammersList');
             
@@ -515,12 +454,12 @@
                 <div class="scammer-card">
                     <div class="card-header">
                         <div>
-                            <span class="scammer-username">${report.username || 'N/A'}</span>
-                            <div class="scammer-id">ID: ${report.user_id || 'N/A'}</div>
+                            <span class="scammer-username">${escapeHtml(report.username || 'N/A')}</span>
+                            <div class="scammer-id">ID: ${escapeHtml(report.user_id || 'N/A')}</div>
                         </div>
-                        <div class="amount">${report.amount || '$0'}</div>
+                        <div class="amount">${escapeHtml(report.amount || '$0')}</div>
                     </div>
-                    <div class="summary">${report.summary ? report.summary.substring(0, 150) + (report.summary.length > 150 ? '...' : '') : 'No description provided.'}</div>
+                    <div class="summary">${escapeHtml(report.summary ? report.summary.substring(0, 120) + (report.summary.length > 120 ? '...' : '') : 'No description.')}</div>
                     <div class="card-buttons">
                         <a href="report.html?id=${report.id}" class="btn btn-primary">📄 VIEW REPORT</a>
                         ${report.proof_channel ? `<a href="${report.proof_channel}" target="_blank" class="btn btn-outline">🔍 VIEW PROOF</a>` : ''}
@@ -528,18 +467,31 @@
                 </div>
             `).join('');
             
-            // Pagination
             let paginationHtml = '';
             if (currentPage > 1) {
                 paginationHtml += `<button onclick="changePage(${currentPage - 1})">◀ PREV</button>`;
             }
-            for (let i = 1; i <= Math.min(totalPages, 5); i++) {
+            
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            for (let i = startPage; i <= endPage; i++) {
                 paginationHtml += `<button onclick="changePage(${i})" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
             }
+            
             if (currentPage < totalPages) {
                 paginationHtml += `<button onclick="changePage(${currentPage + 1})">NEXT ▶</button>`;
             }
             document.getElementById('pagination').innerHTML = paginationHtml;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
         }
 
         function changePage(page) {
@@ -547,7 +499,6 @@
             displayReports();
         }
 
-        // Search
         document.getElementById('searchBtn').addEventListener('click', () => {
             currentPage = 1;
             displayReports();
@@ -560,7 +511,6 @@
             }
         });
 
-        // Load data on page load
         loadReports();
     </script>
 </body>
