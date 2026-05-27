@@ -10,9 +10,8 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(135deg, #0a0a1a 0%, #0f0f2a 50%, #0a0a1a 100%);
             min-height: 100vh;
             display: flex;
@@ -20,106 +19,78 @@
             align-items: center;
             color: #fff;
         }
-
         .login-container {
             background: rgba(15, 25, 45, 0.8);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 255, 255, 0.3);
             border-radius: 30px;
-            padding: 50px;
+            padding: 40px;
             width: 100%;
-            max-width: 450px;
-            animation: float 3s ease-in-out infinite;
+            max-width: 400px;
         }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
         .logo {
             text-align: center;
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 800;
-            background: linear-gradient(135deg, #00ffff, #0066ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
             margin-bottom: 10px;
         }
-
+        .logo .blue {
+            color: #00ffff;
+        }
         .subtitle {
             text-align: center;
             color: #00ffff;
             font-size: 12px;
             margin-bottom: 30px;
         }
-
         .input-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
-
         .input-group label {
             display: block;
             margin-bottom: 8px;
             color: #8892b0;
             font-size: 14px;
         }
-
         .input-group input {
             width: 100%;
-            padding: 15px 20px;
+            padding: 14px;
             background: rgba(10, 20, 35, 0.8);
             border: 1px solid rgba(0, 255, 255, 0.3);
-            border-radius: 15px;
+            border-radius: 12px;
             color: #fff;
             font-size: 16px;
             outline: none;
-            transition: all 0.3s ease;
         }
-
         .input-group input:focus {
             border-color: #00ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
         }
-
         button {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             background: linear-gradient(135deg, #00ffff, #0066ff);
             border: none;
-            border-radius: 15px;
+            border-radius: 12px;
             color: #fff;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-        }
-
         .error {
             color: #ff4444;
             text-align: center;
             margin-top: 15px;
             font-size: 14px;
         }
-
         .back-link {
             text-align: center;
             margin-top: 20px;
         }
-
         .back-link a {
             color: #8892b0;
             text-decoration: none;
             font-size: 14px;
         }
-
         .back-link a:hover {
             color: #00ffff;
         }
@@ -127,7 +98,9 @@
 </head>
 <body>
     <div class="login-container">
-        <div class="logo">🔷 EVIDENCE.GG 🔷</div>
+        <div class="logo">
+            <span class="blue">🔷 EVIDENCE.GG 🔷</span>
+        </div>
         <div class="subtitle">ADMIN PORTAL</div>
         
         <div class="input-group">
@@ -153,14 +126,13 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     
     <script>
-        // Firebase Config (YAHAN APNI CONFIG PASTE KARO)
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyCkMVWQ4NCqV7yJIUwBwu2NImetw7zUJeY",
+            authDomain: "scammer-database.firebaseapp.com",
+            projectId: "scammer-database",
+            storageBucket: "scammer-database.firebasestorage.app",
+            messagingSenderId: "257014278130",
+            appId: "1:257014278130:web:1c527b320f36b4d6c5ed6b"
         };
 
         firebase.initializeApp(firebaseConfig);
