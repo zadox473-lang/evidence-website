@@ -1,183 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scam Report | Evidence.gg</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #0a0c12;
-            color: #e2e8f0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #4299e1;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .report-card {
-            background: #111827;
-            border: 1px solid #1f2937;
-            border-radius: 12px;
-            padding: 30px;
-        }
-        .report-badge {
-            background: #dc2626;
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-        .amount {
-            font-size: 36px;
-            font-weight: 700;
-            color: #48bb78;
-            margin: 15px 0;
-        }
-        .username {
-            font-size: 20px;
-            font-weight: 600;
-            color: #4299e1;
-            margin: 10px 0;
-        }
-        .user-id {
-            font-size: 13px;
-            color: #718096;
-            margin-bottom: 25px;
-        }
-        .section-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin: 25px 0 12px;
-            color: #fff;
-        }
-        .description {
-            background: #0d1117;
-            padding: 16px;
-            border-radius: 8px;
-            line-height: 1.6;
-            font-size: 14px;
-            color: #a0aec0;
-        }
-        .proof-btn {
-            display: block;
-            text-align: center;
-            padding: 12px;
-            background: transparent;
-            border: 1px solid #4299e1;
-            border-radius: 6px;
-            color: #4299e1;
-            text-decoration: none;
-            margin-top: 25px;
-            font-weight: 500;
-        }
-        .proof-btn:hover {
-            background: rgba(66, 153, 225, 0.1);
-        }
-        .loading {
-            text-align: center;
-            padding: 50px;
-            color: #718096;
-        }
-        .error {
-            text-align: center;
-            padding: 50px;
-            color: #dc2626;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Details</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/report.js"></script>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Reports</a>
-        
-        <div id="reportContent" class="report-card">
-            <div class="loading">Loading report...</div>
-        </div>
-    </div>
-
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyCkMVWQ4NCqV7yJIUwBwu2NImetw7zUJeY",
-            authDomain: "scammer-database.firebaseapp.com",
-            projectId: "scammer-database",
-            storageBucket: "scammer-database.firebasestorage.app",
-            messagingSenderId: "257014278130",
-            appId: "1:257014278130:web:1c527b320f36b4d6c5ed6b"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const reportId = urlParams.get('id');
-
-        async function loadReport() {
-            if (!reportId) {
-                document.getElementById('reportContent').innerHTML = '<div class="error">Invalid report ID</div>';
-                return;
-            }
-
-            try {
-                const doc = await db.collection('reports').doc(reportId).get();
-                
-                if (!doc.exists) {
-                    document.getElementById('reportContent').innerHTML = '<div class="error">Report not found</div>';
-                    return;
-                }
-
-                const data = doc.data();
-                
-                document.getElementById('reportContent').innerHTML = `
-                    <div class="report-badge">SCAM ALERT</div>
-                    <div class="amount">${escapeHtml(data.amount || '$0')}</div>
-                    <div class="username">${escapeHtml(data.username || 'Unknown')}</div>
-                    <div class="user-id">Scammer ID: ${escapeHtml(data.user_id || 'N/A')}</div>
-                    
-                    <div class="section-title">Report Description</div>
-                    <div class="description">${escapeHtml(data.summary || 'No description provided.')}</div>
-                    
-                    ${data.proof_channel ? `
-                        <a href="${data.proof_channel}" target="_blank" class="proof-btn">
-                            View Proof Channel
-                        </a>
-                    ` : '<div style="color: #dc2626; text-align: center; margin-top: 20px; font-size: 14px;">No proof channel provided</div>'}
-                `;
-            } catch (error) {
-                document.getElementById('reportContent').innerHTML = `<div class="error">Error loading report</div>`;
-            }
-        }
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            });
-        }
-
-        loadReport();
-    </script>
+  <div class="detail-container card">
+    <span class="badge">SCAM ALERT</span>
+    <h1 id="username"></h1>
+    <h2 id="amount"></h2>
+    <p id="userid"></p>
+    <div class="description" id="description"></div>
+    <a id="proofBtn" target="_blank" class="proof-btn">View Proof Channel</a>
+  </div>
 </body>
 </html>
