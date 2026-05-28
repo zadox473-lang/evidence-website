@@ -1,1 +1,27 @@
+.report-card,
+.stat-card{
+    position:relative;
+    overflow:hidden;
+}
 
+.report-card::before,
+.stat-card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        145deg,
+        rgba(255,0,0,.06),
+        transparent 40%
+    );
+    pointer-events:none;
+}
+
+.report-card:hover{
+    background:#101010;
+}
+
+.report-buttons button{
+    font-weight:600;
+    letter-spacing:.4px;
+}
