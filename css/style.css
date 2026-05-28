@@ -383,3 +383,105 @@ body{
 .active-page{
     background:#ff1a1a !important;
   }
+/* GLASS EFFECT */
+
+.report-card,
+.stat-card,
+.sidebar,
+.nav-btn,
+.admin-btn,
+.search-section input,
+.search-section select{
+    backdrop-filter:blur(20px);
+}
+
+/* HERO TITLE GLOW */
+
+.hero-left h1{
+    text-shadow:
+    0 0 20px rgba(255,0,0,.15);
+}
+
+/* RED LINE */
+
+.section-title{
+    position:relative;
+    padding-left:18px;
+}
+
+.section-title::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:5px;
+    width:4px;
+    height:35px;
+    border-radius:20px;
+    background:#ff1a1a;
+}
+
+/* SEARCH FOCUS */
+
+.search-section input:focus,
+.search-section select:focus,
+.admin-input:focus,
+.admin-textarea:focus{
+    border-color:#ff1a1a;
+    box-shadow:0 0 20px rgba(255,0,0,.12);
+}
+
+/* VIDEO AREA */
+
+.hero-right{
+    position:relative;
+}
+
+.hero-right::before{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:radial-gradient(
+        circle,
+        rgba(255,0,0,.18),
+        transparent 70%
+    );
+    z-index:-1;
+    border-radius:50%;
+}
+
+/* BUTTON GLOW */
+
+.search-btn,
+.admin-submit,
+.report-buttons button,
+.telegram-btn{
+    position:relative;
+    overflow:hidden;
+}
+
+.search-btn::before,
+.admin-submit::before,
+.report-buttons button::before,
+.telegram-btn::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+    );
+    transition:.6s;
+}
+
+.search-btn:hover::before,
+.admin-submit:hover::before,
+.report-buttons button:hover::before,
+.telegram-btn:hover::before{
+    left:100%;
+    }
