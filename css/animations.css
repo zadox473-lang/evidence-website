@@ -38,6 +38,7 @@
 .active-btn{
     animation:glowPulse 3s infinite;
 }
+
 /* BACKGROUND GLOW */
 
 body::before{
