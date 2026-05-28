@@ -26,3 +26,19 @@
 .sidebar-btn:hover{
     background:#161616;
 }
+/* BOTTOM SIDEBAR */
+
+.sidebar{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.sidebar-bottom{
+    margin-top:auto;
+    padding-top:40px;
+}
+
+.sidebar-bottom .sidebar-btn{
+    margin-bottom:14px;
+}
