@@ -1,71 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evidence.gg</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <script type="module" src="js/app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence.gg</title>
+
+    <!-- CSS FILES -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <aside class="sidebar">
-    <h1>EVIDENCE.GG</h1>
-    <nav>
-      <a class="active">Reports</a>
-      <a href="admin.html">Admin</a>
-      <a href="login.html">Login</a>
-    </nav>
-  </aside>
 
-  <main class="main">
-    <section class="hero">
-      <div>
-        <span class="badge">PROTECT THE COMMUNITY</span>
-        <h2>Community Scam Database</h2>
-        <p>Browse verified scam reports shared by the community.</p>
-      </div>
-    </section>
-
-    <section class="stats">
-      <div class="card stat-card">
-        <h3 id="totalReports">0</h3>
-        <p>Total Reports</p>
-      </div>
-
-      <div class="card stat-card">
-        <h3 id="totalScammers">0</h3>
-        <p>Total Scammers</p>
-      </div>
-
-      <div class="card stat-card">
-        <h3 id="totalAmount">$0</h3>
-        <p>Total Amount Lost</p>
-      </div>
-
-      <div class="card stat-card">
-        <h3>0</h3>
-        <p>Trusted Middlemen</p>
-      </div>
-    </section>
-
-    <section class="search-box card">
-      <input type="text" id="searchInput" placeholder="Search by username or ID...">
-      <button id="searchBtn">Search</button>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <h2>Recent Scam Reports</h2>
-      </div>
-
-      <div id="reportsContainer" class="reports-grid"></div>
-
-      <div class="pagination">
-        <button id="prevBtn">Prev</button>
-        <button class="active">1</button>
-        <button id="nextBtn">Next</button>
-      </div>
-    </section>
-  </main>
 </body>
 </html>
