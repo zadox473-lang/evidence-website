@@ -1,1 +1,40 @@
+@keyframes float{
 
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+.shield-video{
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse{
+
+    0%{
+        box-shadow:0 0 15px rgba(255,0,0,.12);
+    }
+
+    50%{
+        box-shadow:0 0 35px rgba(255,0,0,.25);
+    }
+
+    100%{
+        box-shadow:0 0 15px rgba(255,0,0,.12);
+    }
+
+}
+
+.active-nav,
+.active-btn{
+    animation:glowPulse 3s infinite;
+}
