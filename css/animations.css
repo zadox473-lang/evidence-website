@@ -38,3 +38,89 @@
 .active-btn{
     animation:glowPulse 3s infinite;
 }
+/* BACKGROUND GLOW */
+
+body::before{
+    content:'';
+    position:fixed;
+    top:-300px;
+    right:-200px;
+    width:700px;
+    height:700px;
+    background:radial-gradient(
+        circle,
+        rgba(255,0,0,.18),
+        transparent 70%
+    );
+    z-index:-1;
+    pointer-events:none;
+}
+
+body::after{
+    content:'';
+    position:fixed;
+    bottom:-300px;
+    left:-200px;
+    width:700px;
+    height:700px;
+    background:radial-gradient(
+        circle,
+        rgba(255,0,0,.12),
+        transparent 70%
+    );
+    z-index:-1;
+    pointer-events:none;
+}
+
+/* CARD SHINE */
+
+.report-card::after,
+.stat-card::after{
+    content:'';
+    position:absolute;
+    top:-120%;
+    left:-100%;
+    width:120%;
+    height:300%;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.03),
+        transparent
+    );
+    transform:rotate(25deg);
+    transition:.8s;
+}
+
+.report-card:hover::after,
+.stat-card:hover::after{
+    left:120%;
+}
+
+/* SMOOTH */
+
+button,
+input,
+select,
+textarea{
+    transition:.3s ease;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#080808;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2a0000;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#ff1a1a;
+}
