@@ -1,44 +1,122 @@
 .sidebar{
-    backdrop-filter:blur(20px);
-    background:rgba(8,8,8,.96);
-}
 
-.sidebar::before{
-    content:'';
-    position:absolute;
+    position:fixed;
     top:0;
-    right:0;
-    width:1px;
-    height:100%;
-    background:linear-gradient(
-        to bottom,
-        transparent,
-        rgba(255,0,0,.5),
-        transparent
-    );
-}
+    left:0;
 
-.sidebar-btn{
-    font-weight:500;
-    letter-spacing:.3px;
-}
+    width:240px;
+    height:100vh;
 
-.sidebar-btn:hover{
-    background:#161616;
-}
-/* BOTTOM SIDEBAR */
+    background:#070707;
 
-.sidebar{
+    border-right:1px solid rgba(255,0,0,.12);
+
+    padding:24px 18px;
+
     display:flex;
     flex-direction:column;
     justify-content:space-between;
+
+    z-index:999;
+
+}
+
+.sidebar-top{
+    width:100%;
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+}
+
+.logo img{
+
+    width:42px;
+    height:42px;
+    object-fit:contain;
+
+}
+
+.logo h2{
+
+    font-size:20px;
+    font-weight:700;
+    color:#fff;
+
+}
+
+.logo span{
+
+    font-size:11px;
+    color:#777;
+
 }
 
 .sidebar-bottom{
-    margin-top:auto;
-    padding-top:40px;
+
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:14px;
+
 }
 
-.sidebar-bottom .sidebar-btn{
-    margin-bottom:14px;
+.sidebar-btn{
+
+    width:100%;
+
+    height:52px;
+
+    border:none;
+    outline:none;
+
+    border-radius:14px;
+
+    background:#0c0c0c;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:500;
+
+    cursor:pointer;
+
+    border:1px solid rgba(255,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.sidebar-btn:hover{
+
+    border-color:#ff1a1a;
+
+    box-shadow:
+    0 0 20px rgba(255,0,0,.18);
+
+    transform:translateY(-2px);
+
+}
+
+.telegram-btn{
+
+    background:rgba(255,0,0,.08);
+
+    border:1px solid rgba(255,0,0,.35);
+
+}
+
+.active-btn{
+
+    border-color:#ff1a1a;
+
+    box-shadow:
+    0 0 20px rgba(255,0,0,.15);
+
 }
