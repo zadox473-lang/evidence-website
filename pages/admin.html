@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body>
+
+    <div class="admin-panel">
+
+        <!-- TOP -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;">
+
+            <div>
+                <h1>ADMIN PANEL</h1>
+                <p style="color:#888;margin-top:8px;">
+                    Manage reports and database
+                </p>
+            </div>
+
+            <button class="admin-submit">
+                Notifications
+            </button>
+
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-grid" style="margin-bottom:40px;">
+
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Total Reports</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Total Scammers</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>$0</h2>
+                <p>Total Amount</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Trusted MM</p>
+            </div>
+
+        </div>
+
+        <!-- SCAMMER FORM -->
+        <div class="admin-card" style="margin-bottom:30px;">
+
+            <h2 style="margin-bottom:25px;">
+                Scammer Form
+            </h2>
+
+            <input type="text" placeholder="@ Username" class="admin-input">
+
+            <input type="text" placeholder="User ID" class="admin-input">
+
+            <input type="text" placeholder="Scam Amount" class="admin-input">
+
+            <textarea placeholder="Description" class="admin-textarea"></textarea>
+
+            <input type="text" placeholder="Proof Channel Link" class="admin-input">
+
+            <div style="display:flex;gap:15px;">
+
+                <button class="admin-submit">
+                    POST
+                </button>
+
+                <button class="admin-submit">
+                    GENERATE LINK
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- FAKE MM FORM -->
+        <div class="admin-card" style="margin-bottom:30px;">
+
+            <h2 style="margin-bottom:25px;">
+                Fake MM Form
+            </h2>
+
+            <input type="text" placeholder="Fake MM @" class="admin-input">
+
+            <input type="text" placeholder="User ID" class="admin-input">
+
+            <input type="text" placeholder="Real MM @" class="admin-input">
+
+            <input type="text" placeholder="Scam Amount" class="admin-input">
+
+            <textarea placeholder="Description" class="admin-textarea"></textarea>
+
+            <input type="text" placeholder="Proof Channel Link" class="admin-input">
+
+            <div style="display:flex;gap:15px;">
+
+                <button class="admin-submit">
+                    POST
+                </button>
+
+                <button class="admin-submit">
+                    GENERATE LINK
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- IMPERSONATION -->
+        <div class="admin-card" style="margin-bottom:30px;">
+
+            <h2 style="margin-bottom:25px;">
+                Impersonation Form
+            </h2>
+
+            <input type="text" placeholder="Fake Username" class="admin-input">
+
+            <input type="text" placeholder="Real Username" class="admin-input">
+
+            <input type="text" placeholder="User ID" class="admin-input">
+
+            <textarea placeholder="Description" class="admin-textarea"></textarea>
+
+            <input type="text" placeholder="Proof Link" class="admin-input">
+
+            <div style="display:flex;gap:15px;">
+
+                <button class="admin-submit">
+                    POST
+                </button>
+
+                <button class="admin-submit">
+                    GENERATE LINK
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- TRUSTED MM -->
+        <div class="admin-card">
+
+            <h2 style="margin-bottom:25px;">
+                Set Middleman
+            </h2>
+
+            <input type="text" placeholder="@ Username" class="admin-input">
+
+            <input type="text" placeholder="User ID" class="admin-input">
+
+            <input type="text" placeholder="Telegram Link" class="admin-input">
+
+            <textarea placeholder="Description" class="admin-textarea"></textarea>
+
+            <div style="display:flex;gap:15px;">
+
+                <button class="admin-submit">
+                    POST
+                </button>
+
+                <button class="admin-submit">
+                    DELETE
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
