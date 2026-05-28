@@ -2,213 +2,433 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Evidence.gg - Community Scam Database</title>
+    <title>Evidence.gg</title>
 
-    <!-- GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- CSS FILES -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/cards.css">
-    <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
+
 </head>
 
 <body>
 
     <!-- SIDEBAR -->
+
     <aside class="sidebar">
 
-        <div class="sidebar-logo">
-            <img src="assets/logo.png" alt="logo">
-            <h2>EVIDENCE.GG</h2>
-            <p>SCAMMER DATABASE</p>
-        </div>
+        <div>
 
-        <div class="sidebar-links">
-            <button class="sidebar-btn active-btn">Dashboard</button>
-            <button class="sidebar-btn">About</button>
-        </div>
+            <div class="logo">
 
-        <div class="sidebar-bottom">
-            <a href="https://t.me/DwcProtect" target="_blank" class="telegram-btn">
-                Join Telegram Channel
-            </a>
-        </div>
+                <img src="assets/logo.png" alt="Logo">
 
-    </aside>
+                <div>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
+                    <h2>EVIDENCE.GG</h2>
 
-        <!-- TOP NAVBAR -->
-        <nav class="top-navbar">
-
-            <div class="nav-left">
-
-                <button class="nav-btn active-nav">
-                    All
-                </button>
-
-                <button class="nav-btn">
-                    Scammers
-                </button>
-
-                <button class="nav-btn">
-                    Fake MM
-                </button>
-
-                <button class="nav-btn">
-                    Impersonation
-                </button>
-
-                <button class="nav-btn">
-                    Top Scammers
-                </button>
-
-                <button class="nav-btn">
-                    Trusted MM
-                </button>
-
-                <button class="nav-btn">
-                    Appeal
-                </button>
-
-            </div>
-
-            <div class="nav-right">
-
-                <button class="admin-btn">
-                    ...
-                </button>
-
-            </div>
-
-        </nav>
-
-        <!-- HERO SECTION -->
-        <section class="hero-section">
-
-            <div class="hero-left">
-
-                <span class="hero-badge">
-                    PROTECT THE COMMUNITY
-                </span>
-
-                <h1>
-                    Community Scam <span>Database</span>
-                </h1>
-
-                <p>
-                    Search verified scam reports, fake middlemen,
-                    impersonation cases and trusted middlemen.
-                </p>
-
-                <!-- STATS -->
-                <div class="stats-grid">
-
-                    <div class="stat-card">
-                        <h2>0</h2>
-                        <p>Total Reports</p>
-                    </div>
-
-                    <div class="stat-card">
-                        <h2>0</h2>
-                        <p>Total Scammers</p>
-                    </div>
-
-                    <div class="stat-card">
-                        <h2>$0</h2>
-                        <p>Total Amount Lost</p>
-                    </div>
-
-                    <div class="stat-card">
-                        <h2>0</h2>
-                        <p>Trusted MM</p>
-                    </div>
+                    <span>SCAMMER DATABASE</span>
 
                 </div>
 
             </div>
 
-            <!-- HERO RIGHT -->
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <button class="sidebar-btn active-btn">
+
+                Dashboard
+
+            </button>
+
+            <button class="sidebar-btn">
+
+                About
+
+            </button>
+
+            <button 
+                class="sidebar-btn telegram-btn"
+                onclick="window.open('https://t.me/DwcProtect')"
+            >
+
+                Join Telegram
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <!-- TOP NAVBAR -->
+
+        <header class="top-navbar">
+
+            <div class="nav-left">
+
+                <button class="nav-btn active-nav" data-filter="all">
+                    All
+                </button>
+
+                <button class="nav-btn" data-filter="scammer">
+                    Scammers
+                </button>
+
+                <button class="nav-btn" data-filter="fakemm">
+                    Fake MM
+                </button>
+
+                <button class="nav-btn" data-filter="impersonation">
+                    Impersonation
+                </button>
+
+                <button class="nav-btn" data-filter="top">
+                    Top Scammers
+                </button>
+
+                <button class="nav-btn trusted-btn">
+                    Trusted MM
+                </button>
+
+                <button class="nav-btn appeal-btn">
+                    Appeal
+                </button>
+
+            </div>
+
+            <button class="admin-btn">
+                ...
+            </button>
+
+        </header>
+
+        <!-- HERO -->
+
+        <section class="hero-section">
+
+            <div class="hero-left">
+
+                <span class="hero-badge">
+
+                    PROTECT THE COMMUNITY
+
+                </span>
+
+                <h1>
+
+                    Community Scam <br>
+                    <span>Database</span>
+
+                </h1>
+
+                <p>
+
+                    Browse verified scam reports shared by the community.
+                    Knowledge is protection.
+
+                </p>
+
+            </div>
+
             <div class="hero-right">
 
-                <video autoplay muted loop playsinline class="shield-video">
+                <video 
+                    class="shield-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                >
+
                     <source src="assets/shield.mp4" type="video/mp4">
+
                 </video>
 
             </div>
 
         </section>
 
+        <!-- STATS -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <h2>0</h2>
+
+                <p>Total Reports</p>
+
+                <span>All time</span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h2>0</h2>
+
+                <p>Total Scammers</p>
+
+                <span>All time</span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h2>$0</h2>
+
+                <p>Total Amount Lost</p>
+
+                <span>All time</span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h2>0</h2>
+
+                <p>Trusted Middlemen</p>
+
+                <span>All time</span>
+
+            </div>
+
+        </section>
+
         <!-- SEARCH -->
+
         <section class="search-section">
 
-            <input type="text" placeholder="Search by username or ID...">
+            <input 
+                type="text"
+                placeholder="Search by username or ID..."
+            >
 
             <select>
-                <option>All Categories</option>
-                <option>Scammers</option>
-                <option>Fake MM</option>
-                <option>Impersonation</option>
-                <option>Top Scammers</option>
+
+                <option>
+                    All Categories
+                </option>
+
+                <option>
+                    Scammers
+                </option>
+
+                <option>
+                    Fake MM
+                </option>
+
+                <option>
+                    Impersonation
+                </option>
+
             </select>
 
             <button class="search-btn">
+
                 Search
+
             </button>
 
         </section>
 
         <!-- REPORTS -->
+
         <section class="reports-section">
 
             <div class="section-title">
-                <h2>Recent Scam Reports</h2>
+
+                <h2>
+
+                    Recent Scam Reports
+
+                </h2>
+
             </div>
 
-            <!-- REPORT GRID -->
             <div class="reports-grid">
 
                 <!-- CARD -->
-                <div class="report-card">
+
+                <div 
+                    class="report-card"
+                    data-category="scammer"
+                >
 
                     <div class="report-top">
 
                         <div>
-                            <h3>@username</h3>
-                            <span>ID: 728272</span>
+
+                            <h3>@capguns</h3>
+
+                            <span>
+                                ID: 5040524728
+                            </span>
+
                         </div>
 
-                        <h4>$1200</h4>
+                        <h4>
+                            $150
+                        </h4>
 
                     </div>
 
                     <p class="report-desc">
-                        User scammed victim during middleman transaction.
-                        Refused payment after receiving item.
+
+                        I typed him to buy his marketplace and he scammed
+                        after receiving payment from victim.
+
                     </p>
 
                     <div class="report-tags">
+
                         <span>Market Scam</span>
-                        <span>Fake Service</span>
+
+                        <span>Buyer Scam</span>
+
                     </div>
 
                     <div class="report-buttons">
 
-                        <button>
+                        <button onclick="window.location.href='pages/report.html'">
+
                             View Evidence
+
                         </button>
 
-                        <button>
+                        <button onclick="window.open('https://t.me/DwcProtect')">
+
                             Proof Channel
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD -->
+
+                <div 
+                    class="report-card"
+                    data-category="fakemm"
+                >
+
+                    <div class="report-top">
+
+                        <div>
+
+                            <h3>@lxffyy</h3>
+
+                            <span>
+                                ID: 5823985487
+                            </span>
+
+                        </div>
+
+                        <h4>
+                            $130
+                        </h4>
+
+                    </div>
+
+                    <p class="report-desc">
+
+                        Fake middleman service scam reported.
+                        User vanished after transaction.
+
+                    </p>
+
+                    <div class="report-tags">
+
+                        <span>Fake MM</span>
+
+                        <span>Service Scam</span>
+
+                    </div>
+
+                    <div class="report-buttons">
+
+                        <button onclick="window.location.href='pages/report.html'">
+
+                            View Evidence
+
+                        </button>
+
+                        <button onclick="window.open('https://t.me/DwcProtect')">
+
+                            Proof Channel
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD -->
+
+                <div 
+                    class="report-card"
+                    data-category="impersonation"
+                >
+
+                    <div class="report-top">
+
+                        <div>
+
+                            <h3>@middleRex</h3>
+
+                            <span>
+                                ID: 8486303523
+                            </span>
+
+                        </div>
+
+                        <h4>
+                            $0
+                        </h4>
+
+                    </div>
+
+                    <p class="report-desc">
+
+                        User impersonating trusted trader and attempting
+                        scam transactions with fake identity.
+
+                    </p>
+
+                    <div class="report-tags">
+
+                        <span>Impersonation</span>
+
+                        <span>Fake Identity</span>
+
+                    </div>
+
+                    <div class="report-buttons">
+
+                        <button onclick="window.location.href='pages/report.html'">
+
+                            View Evidence
+
+                        </button>
+
+                        <button onclick="window.open('https://t.me/DwcProtect')">
+
+                            Proof Channel
+
                         </button>
 
                     </div>
@@ -219,25 +439,13 @@
 
         </section>
 
-        <!-- PAGINATION -->
-        <section class="pagination-section">
-
-            <button>Prev</button>
-            <button class="active-page">1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>Next</button>
-
-        </section>
-
     </main>
 
-    <!-- JS FILES -->
-    <script src="js/firebase.js"></script>
     <script src="js/app.js"></script>
     <script src="js/search.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/pagination.js"></script>
+    <script src="js/firebase.js"></script>
 
 </body>
 
