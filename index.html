@@ -8,13 +8,10 @@
 
     <title>Evidence.gg</title>
 
-    <!-- GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/cards.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -23,53 +20,6 @@
 </head>
 
 <body>
-
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-        <!-- LOGO -->
-
-        <div class="sidebar-top">
-
-            <div class="logo">
-
-                <img src="assets/logo.png" alt="Logo">
-
-                <div>
-
-                    <h2>EVIDENCE.GG</h2>
-
-                    <span>SCAMMER DATABASE</span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- BOTTOM BUTTONS -->
-
-        <div class="sidebar-bottom">
-
-            <button class="sidebar-btn active-btn">
-                Dashboard
-            </button>
-
-            <button class="sidebar-btn">
-                About
-            </button>
-
-            <button 
-                class="sidebar-btn telegram-btn"
-                onclick="window.open('https://t.me/DwcProtect')"
-            >
-                Join Telegram
-            </button>
-
-        </div>
-
-    </aside>
 
     <!-- MAIN CONTENT -->
 
@@ -117,7 +67,7 @@
 
         </header>
 
-        <!-- HERO SECTION -->
+        <!-- HERO -->
 
         <section class="hero-section">
 
@@ -133,8 +83,8 @@
                 </h1>
 
                 <p>
-                    Browse verified scam reports, fake middlemen,
-                    impersonation cases and trusted traders.
+                    Browse verified scam reports shared by the community.
+                    Knowledge is protection.
                 </p>
 
             </div>
@@ -252,8 +202,6 @@
 
             <div class="reports-grid">
 
-                <!-- CARD -->
-
                 <div 
                     class="report-card"
                     data-category="scammer"
@@ -279,8 +227,7 @@
 
                     <p class="report-desc">
 
-                        I typed him to buy his marketplace and he scammed
-                        after receiving payment from victim.
+                        Marketplace scam reported after payment received.
 
                     </p>
 
@@ -311,6 +258,27 @@
         </section>
 
     </main>
+
+    <!-- FOOTER -->
+
+    <footer class="bottom-footer">
+
+        <button class="footer-btn active-btn">
+            Dashboard
+        </button>
+
+        <button class="footer-btn">
+            About
+        </button>
+
+        <button 
+            class="footer-btn telegram-btn"
+            onclick="window.open('https://t.me/DwcProtect')"
+        >
+            Join Telegram
+        </button>
+
+    </footer>
 
     <!-- JS -->
 
