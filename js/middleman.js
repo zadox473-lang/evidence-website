@@ -9,51 +9,48 @@ const middlemenGrid = document.getElementById("middlemenGrid");
 
 async function loadMiddlemen(){
     try{
-        const snapshot = await getDocs(collection(db, "middlemen"));
+        const snap = await getDocs(collection(db, "middlemen"));
 
         middlemenGrid.innerHTML = "";
 
-        if(snapshot.empty){
+        if(snap.empty){
             middlemenGrid.innerHTML = `
                 <div class="report-card">
-                    <h3>No middlemen found</h3>
-                    <p class="report-desc">No trusted middlemen are available right now.</p>
+                    <h3>No Trusted Middlemen</h3>
+                    <p class="report-desc">No middlemen added yet.</p>
                 </div>
             `;
             return;
         }
 
-        snapshot.forEach(doc => {
-            const data = doc.data();
+        snap.forEach(item => {
+            const data = item.data();
 
-            const card = document.createElement("div");
-            card.className = "report-card";
+            middlemenGrid.innerHTML += `
+                <div class="report-card">
+                    <div class="report-top">
+                        <div>
+                            <h3>${data.username || "@unknown"}</h3>
+                            <span>ID: ${data.user_id || "N/A"}</span>
+                        </div>
+                    </div>
 
-            card.innerHTML = `
-                <div class="report-top">
-                    <div>
-                        <h3>${data.username || "@unknown"}</h3>
-                        <span>ID: ${data.user_id || "N/A"}</span>
+                    <p class="report-desc">
+                        ${data.description || "Verified middleman."}
+                    </p>
+
+                    <div class="report-tags">
+                        <span>Trusted MM</span>
+                        <span>Verified</span>
+                    </div>
+
+                    <div class="report-buttons">
+                        <button onclick="window.open('${data.telegram_link || "https://t.me/DwcProtect"}')">
+                            Open Telegram
+                        </button>
                     </div>
                 </div>
-
-                <p class="report-desc">
-                    ${data.description || "Verified trusted middleman."}
-                </p>
-
-                <div class="report-tags">
-                    <span>Trusted MM</span>
-                    <span>Verified</span>
-                </div>
-
-                <div class="report-buttons">
-                    <button onclick="window.open('${data.telegram_link || "https://t.me/DwcProtect"}')">
-                        Open Telegram
-                    </button>
-                </div>
             `;
-
-            middlemenGrid.appendChild(card);
         });
 
     }catch(error){
