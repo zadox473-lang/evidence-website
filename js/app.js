@@ -72,15 +72,15 @@ function renderReports(reports){
                 <span>${tags[1]}</span>
             </div>
 
-            <div class="report-buttons">
-                <button onclick="window.location.href='pages/report.html?id=${report.id}'">
-                    View Evidence
-                </button>
+           <div class="report-buttons">
+    <button onclick="window.location.href='pages/report.html?id=${report.id}'">
+        View Evidence
+    </button>
 
-                <button onclick="window.open('${report.proof_channel || "https://t.me/DwcProtect"}')">
-                    Proof Channel
-                </button>
-            </div>
+    <button class="proof-btn" onclick="window.open('${report.proof_channel || "https://t.me/DwcProtect"}')">
+        Proof Channel
+    </button>
+</div> 
         `;
 
         reportsGrid.appendChild(card);
