@@ -3,8 +3,13 @@ import { db } from "./firebase.js";
 import {
     collection,
     addDoc,
+    getDocs,
+    deleteDoc,
+    doc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* TABS */
 
 const adminTabs = document.querySelectorAll(".admin-tab, .admin-top-btn[data-admin-tab]");
 const adminSections = document.querySelectorAll(".admin-section");
@@ -27,8 +32,23 @@ adminTabs.forEach(tab => {
 
         const activeSection = document.getElementById(target);
         if(activeSection) activeSection.classList.add("active-admin-section");
+
+        if(target === "manage"){
+            loadManageData();
+        }
     });
 });
+
+/* HELPERS */
+
+function getInputs(sectionId){
+    const section = document.querySelector(sectionId);
+
+    return {
+        inputs: section.querySelectorAll(".admin-input"),
+        textarea: section.querySelector(".admin-textarea")
+    };
+}
 
 async function saveReport(type, data){
     const docRef = await addDoc(collection(db, "reports"), {
@@ -44,14 +64,6 @@ async function saveReport(type, data){
 function showLink(id){
     const link = `${window.location.origin}/pages/report.html?id=${id}`;
     prompt("Generated Report Link:", link);
-}
-
-function getInputs(sectionId){
-    const section = document.querySelector(sectionId);
-    return {
-        inputs: section.querySelectorAll(".admin-input"),
-        textarea: section.querySelector(".admin-textarea")
-    };
 }
 
 /* SCAMMER */
@@ -70,6 +82,7 @@ scammerBtns[0]?.addEventListener("click", async () => {
     });
 
     alert("Scammer report posted");
+    loadStats();
 });
 
 scammerBtns[1]?.addEventListener("click", async () => {
@@ -84,6 +97,7 @@ scammerBtns[1]?.addEventListener("click", async () => {
     });
 
     showLink(id);
+    loadStats();
 });
 
 /* FAKE MM */
@@ -103,6 +117,7 @@ fakeMmBtns[0]?.addEventListener("click", async () => {
     });
 
     alert("Fake MM report posted");
+    loadStats();
 });
 
 fakeMmBtns[1]?.addEventListener("click", async () => {
@@ -118,6 +133,7 @@ fakeMmBtns[1]?.addEventListener("click", async () => {
     });
 
     showLink(id);
+    loadStats();
 });
 
 /* IMPERSONATION */
@@ -137,6 +153,7 @@ impBtns[0]?.addEventListener("click", async () => {
     });
 
     alert("Impersonation report posted");
+    loadStats();
 });
 
 impBtns[1]?.addEventListener("click", async () => {
@@ -152,6 +169,7 @@ impBtns[1]?.addEventListener("click", async () => {
     });
 
     showLink(id);
+    loadStats();
 });
 
 /* MIDDLEMAN */
@@ -170,4 +188,106 @@ mmBtn?.addEventListener("click", async () => {
     });
 
     alert("Middleman added");
+    loadStats();
 });
+
+/* STATS */
+
+function cleanAmount(amount){
+    if(!amount) return 0;
+    return Number(String(amount).replace(/[^0-9.]/g, "")) || 0;
+}
+
+async function loadStats(){
+    const reportsSnap = await getDocs(collection(db, "reports"));
+    const mmSnap = await getDocs(collection(db, "middlemen"));
+
+    let totalAmount = 0;
+
+    reportsSnap.forEach(item => {
+        totalAmount += cleanAmount(item.data().amount);
+    });
+
+    const cards = document.querySelectorAll(".admin-stat-card h2");
+
+    if(cards[0]) cards[0].textContent = reportsSnap.size;
+    if(cards[1]) cards[1].textContent = reportsSnap.size;
+    if(cards[2]) cards[2].textContent = "$" + totalAmount;
+    if(cards[3]) cards[3].textContent = mmSnap.size;
+}
+
+/* MANAGE DATA */
+
+async function loadManageData(){
+    const manageList = document.querySelector("#manage .manage-list");
+
+    if(!manageList) return;
+
+    manageList.innerHTML = "";
+
+    const reportsSnap = await getDocs(collection(db, "reports"));
+
+    reportsSnap.forEach(item => {
+        const data = item.data();
+
+        const name =
+            data.username ||
+            data.fake_mm ||
+            data.fake_username ||
+            "@unknown";
+
+        manageList.innerHTML += `
+            <div class="manage-item">
+                <div>
+                    <h3>${name}</h3>
+                    <p>${data.type || "report"} | ${data.amount || "$0"}</p>
+                </div>
+
+                <button class="admin-submit danger-admin-btn" onclick="deleteReport('${item.id}')">
+                    DELETE REPORT
+                </button>
+            </div>
+        `;
+    });
+
+    const mmSnap = await getDocs(collection(db, "middlemen"));
+
+    mmSnap.forEach(item => {
+        const data = item.data();
+
+        manageList.innerHTML += `
+            <div class="manage-item">
+                <div>
+                    <h3>${data.username || "@middleman"}</h3>
+                    <p>Trusted Middleman</p>
+                </div>
+
+                <button class="admin-submit danger-admin-btn" onclick="deleteMiddleman('${item.id}')">
+                    DELETE MM
+                </button>
+            </div>
+        `;
+    });
+}
+
+window.deleteReport = async function(id){
+    if(!confirm("Delete this report?")) return;
+
+    await deleteDoc(doc(db, "reports", id));
+
+    alert("Report deleted");
+    loadManageData();
+    loadStats();
+};
+
+window.deleteMiddleman = async function(id){
+    if(!confirm("Delete this middleman?")) return;
+
+    await deleteDoc(doc(db, "middlemen", id));
+
+    alert("Middleman deleted");
+    loadManageData();
+    loadStats();
+};
+
+loadStats();
