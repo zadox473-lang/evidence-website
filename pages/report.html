@@ -1,80 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Scam Report</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/cards.css">
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/responsive.css">
-
 </head>
 
 <body>
 
-    <main class="main-content" style="margin-left:0;max-width:900px;margin:auto;padding-top:60px;">
+<main class="main-content" style="max-width:1100px;margin:auto;padding-top:70px;">
 
-        <div class="report-card">
+    <div class="report-card">
 
-            <span class="hero-badge">
-                SCAM ALERT
-            </span>
+        <span class="hero-badge">SCAM ALERT</span>
 
-            <div class="report-top" style="margin-top:25px;">
-
-                <div>
-
-                    <h3>@username</h3>
-
-                    <span>
-                        ID: 728272
-                    </span>
-
-                </div>
-
-                <h4>
-                    $1200
-                </h4>
-
+        <div class="report-top" style="margin-top:28px;">
+            <div>
+                <h3 id="reportName">Loading...</h3>
+                <span id="reportId">ID: Loading...</span>
             </div>
 
-            <p class="report-desc">
-
-                User scammed victim during transaction.
-                Refused payment after receiving assets.
-                Fake middleman activity confirmed by admin.
-
-            </p>
-
-            <div class="report-tags">
-
-                <span>Market Scam</span>
-
-                <span>Fake MM</span>
-
-            </div>
-
-            <div class="report-buttons" style="margin-top:35px;">
-
-                <button onclick="window.open('https://t.me/DwcProtect')">
-
-                    EVIDENCE
-
-                </button>
-
-            </div>
-
+            <h4 id="reportAmount">$0</h4>
         </div>
 
-    </main>
+        <p class="report-desc" id="reportDescription">
+            Loading report details...
+        </p>
+
+        <div class="report-tags">
+            <span id="tagOne">Report</span>
+            <span id="tagTwo">Verified</span>
+        </div>
+
+        <div class="report-buttons" style="margin-top:35px;">
+            <button id="evidenceBtn">
+                EVIDENCE
+            </button>
+        </div>
+
+    </div>
+
+</main>
+
+<script type="module" src="../js/report.js"></script>
 
 </body>
-
 </html>
