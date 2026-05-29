@@ -40,18 +40,27 @@ function getReportTags(report){
 }
 
 function setHeroVisibility(){
-    if(
+
+    const hideIntro =
         currentFilter === "scammer" ||
         currentFilter === "fakemm" ||
         currentFilter === "impersonation" ||
-        currentFilter === "top"
-    ){
-        if(heroSection) heroSection.style.display = "none";
-        if(statsSection) statsSection.style.display = "none";
-    }else{
-        if(heroSection) heroSection.style.display = "";
-        if(statsSection) statsSection.style.display = "";
-    }
+        currentFilter === "top";
+
+    document
+        .querySelectorAll(".hero-section, .stats-grid")
+        .forEach(el => {
+
+            if(el){
+                el.style.setProperty(
+                    "display",
+                    hideIntro ? "none" : "",
+                    "important"
+                );
+            }
+
+        });
+
 }
 
 function renderReports(reports){
