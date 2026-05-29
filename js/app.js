@@ -289,3 +289,19 @@ if(shieldPanel && shield3d){
 
     animateShield();
         }
+/* SHIELD FIX */
+
+const fixShield = document.getElementById("shield3d");
+
+let fixAngle = 0;
+
+function rotateShieldFix(){
+    if(fixShield){
+        fixAngle += 0.7;
+        fixShield.style.transform = `rotateY(${fixAngle}deg)`;
+    }
+
+    requestAnimationFrame(rotateShieldFix);
+}
+
+rotateShieldFix();
