@@ -197,30 +197,47 @@ impBtns[1]?.addEventListener("click", async () => {
 
 const mmBtns = document.querySelectorAll("#middleman .admin-submit");
 
-mmBtns[0]?.addEventListener("click", async () => {
-    try{
-        const { inputs, textarea } = getInputs("#middleman");
+const middlemanPostBtn =
+document.getElementById("middlemanPostBtn");
 
-        if(!inputs[0].value || !inputs[1].value || !inputs[2].value){
-            alert("Fill username, user ID and Telegram link");
-            return;
+middlemanPostBtn?.addEventListener(
+    "click",
+    async () => {
+
+        try{
+
+            const { inputs, textarea } =
+            getInputs("#middleman");
+
+            await addDoc(
+                collection(db, "middlemen"),
+                {
+                    username: inputs[0].value,
+                    user_id: inputs[1].value,
+                    telegram_link: inputs[2].value,
+                    description: textarea.value,
+                    timestamp: serverTimestamp()
+                }
+            );
+
+            alert("Middleman added successfully");
+
+            loadStats();
+
+        }
+        catch(error){
+
+            alert(
+                "Middleman Error: " +
+                error.message
+            );
+
+            console.log(error);
+
         }
 
-        await addDoc(collection(db, "middlemen"), {
-            username: inputs[0].value,
-            user_id: inputs[1].value,
-            telegram_link: inputs[2].value,
-            description: textarea.value,
-            timestamp: serverTimestamp()
-        });
-
-        alert("Middleman added successfully");
-        loadStats();
-
-    }catch(error){
-        alert("Middleman error: " + error.message);
     }
-});
+);
 
 /* STATS */
 
