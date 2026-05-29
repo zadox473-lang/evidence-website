@@ -7,14 +7,20 @@ import {
     where
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+/* ELEMENTS */
+
 const reportsGrid = document.querySelector(".reports-grid");
 const navButtons = document.querySelectorAll(".nav-btn");
 const searchInput = document.querySelector(".search-section input");
 const categorySelect = document.querySelector(".search-section select");
 const adminBtn = document.querySelector(".admin-btn");
+const heroSection = document.querySelector(".hero-section");
+const statsSection = document.querySelector(".stats-grid");
 
 let allReports = [];
 let currentFilter = "all";
+
+/* HELPERS */
 
 function cleanAmount(amount){
     if(!amount) return 0;
@@ -31,6 +37,21 @@ function getReportTags(report){
     if(report.type === "fakemm") return ["Fake MM", "Middleman Scam"];
     if(report.type === "impersonation") return ["Impersonation", "Fake Identity"];
     return ["Market Scam", "Buyer Scam"];
+}
+
+function setHeroVisibility(){
+    if(
+        currentFilter === "scammer" ||
+        currentFilter === "fakemm" ||
+        currentFilter === "impersonation" ||
+        currentFilter === "top"
+    ){
+        if(heroSection) heroSection.style.display = "none";
+        if(statsSection) statsSection.style.display = "none";
+    }else{
+        if(heroSection) heroSection.style.display = "";
+        if(statsSection) statsSection.style.display = "";
+    }
 }
 
 function renderReports(reports){
@@ -60,6 +81,7 @@ function renderReports(reports){
                     <h3>${name}</h3>
                     <span>ID: ${report.user_id || "N/A"}</span>
                 </div>
+
                 <h4>${report.amount || "$0"}</h4>
             </div>
 
@@ -72,15 +94,15 @@ function renderReports(reports){
                 <span>${tags[1]}</span>
             </div>
 
-           <div class="report-buttons">
-    <button onclick="window.location.href='pages/report.html?id=${report.id}'">
-        View Evidence
-    </button>
+            <div class="report-buttons">
+                <button onclick="window.location.href='pages/report.html?id=${report.id}'">
+                    View Evidence
+                </button>
 
-    <button class="proof-btn" onclick="window.open('${report.proof_channel || "https://t.me/DwcProtect"}')">
-        Proof Channel
-    </button>
-</div> 
+                <button class="proof-btn" onclick="window.open('${report.proof_channel || "https://t.me/DwcProtect"}', '_blank')">
+                    Proof Channel
+                </button>
+            </div>
         `;
 
         reportsGrid.appendChild(card);
@@ -112,6 +134,7 @@ function applyFilters(){
         });
     }
 
+    setHeroVisibility();
     renderReports(filtered);
 }
 
@@ -137,6 +160,8 @@ async function updateTrustedCount(){
         console.log("Trusted MM count error:", error);
     }
 }
+
+/* LOAD REPORTS */
 
 async function loadReports(){
     try{
@@ -176,6 +201,8 @@ async function loadReports(){
 
 loadReports();
 
+/* NAVIGATION */
+
 navButtons.forEach(button => {
     button.addEventListener("click", () => {
 
@@ -189,25 +216,6 @@ navButtons.forEach(button => {
             return;
         }
 
-        const heroSection = document.querySelector(".hero-section");
-        const statsSection = document.querySelector(".stats-grid");
-
-        if(
-            button.dataset.filter === "scammer" ||
-            button.dataset.filter === "fakemm" ||
-            button.dataset.filter === "impersonation"
-        ){
-
-            if(heroSection) heroSection.style.display = "none";
-            if(statsSection) statsSection.style.display = "none";
-
-        }else{
-
-            if(heroSection) heroSection.style.display = "";
-            if(statsSection) statsSection.style.display = "";
-
-        }
-
         navButtons.forEach(btn => btn.classList.remove("active-nav"));
         button.classList.add("active-nav");
 
@@ -215,6 +223,10 @@ navButtons.forEach(button => {
 
         applyFilters();
 
+        const reportsSection = document.querySelector(".reports-section");
+        if(reportsSection && currentFilter !== "all"){
+            reportsSection.scrollIntoView({ behavior: "smooth" });
+        }
     });
 });
 
@@ -246,7 +258,7 @@ if(categorySelect){
     });
 }
 
-/* SHIELD FIX */
+/* SHIELD ROTATION */
 
 const fixShield = document.getElementById("shield3d");
 let fixAngle = 0;
