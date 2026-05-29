@@ -338,3 +338,81 @@ window.deleteMiddleman = async function(id){
 };
 
 loadStats();
+/* NOTIFICATIONS / APPEALS */
+
+async function loadAppeals(){
+    const notificationList = document.querySelector("#notifications .manage-list");
+
+    if(!notificationList) return;
+
+    notificationList.innerHTML = "";
+
+    const appealsSnap = await getDocs(collection(db, "appeals"));
+
+    if(appealsSnap.empty){
+        notificationList.innerHTML = `
+            <div class="manage-item">
+                <div>
+                    <h3>No notifications</h3>
+                    <p>No appeal requests found.</p>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+    appealsSnap.forEach(item => {
+        const data = item.data();
+
+        notificationList.innerHTML += `
+            <div class="manage-item appeal-item">
+                <div>
+                    <h3>${data.username || "@unknown"}</h3>
+                    <p>ID: ${data.user_id || "N/A"}</p>
+                    <p>Telegram: ${data.telegram || "N/A"}</p>
+                    <p>Reason: ${data.reason || "No reason provided"}</p>
+                    <p>
+                        Proof:
+                        <a href="${data.proof_link || "#"}" target="_blank" style="color:#ff4d4d;">
+                            Open Proof
+                        </a>
+                    </p>
+                </div>
+
+                <div class="admin-actions small-actions">
+                    <button class="admin-submit" onclick="approveAppeal('${item.id}')">
+                        APPROVE
+                    </button>
+
+                    <button class="admin-submit secondary-admin-btn" onclick="rejectAppeal('${item.id}')">
+                        REJECT
+                    </button>
+
+                    <button class="admin-submit danger-admin-btn" onclick="deleteAppeal('${item.id}')">
+                        DELETE
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+window.approveAppeal = async function(id){
+    alert("Appeal approved");
+    await deleteDoc(doc(db, "appeals", id));
+    loadAppeals();
+};
+
+window.rejectAppeal = async function(id){
+    alert("Appeal rejected");
+    await deleteDoc(doc(db, "appeals", id));
+    loadAppeals();
+};
+
+window.deleteAppeal = async function(id){
+    if(!confirm("Delete this appeal?")) return;
+
+    await deleteDoc(doc(db, "appeals", id));
+    alert("Appeal deleted");
+    loadAppeals();
+};
