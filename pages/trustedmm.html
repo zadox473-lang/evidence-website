@@ -2,74 +2,47 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Trusted Middlemen</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/cards.css">
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/responsive.css">
-
 </head>
 
 <body>
 
-    <main class="main-content" style="margin-left:0;padding-top:60px;">
+    <main class="main-content">
 
-        <div class="section-title">
+        <header class="top-navbar">
+            <div class="nav-left">
+                <button class="nav-btn active-nav">Trusted MM</button>
+                <button class="nav-btn" onclick="window.location.href='../index.html'">Back Home</button>
+            </div>
+        </header>
 
-            <h2>
-                Trusted Middlemen
-            </h2>
+        <section class="reports-section">
 
-        </div>
-
-        <div class="reports-grid">
-
-            <!-- MM CARD -->
-            <div class="report-card">
-
-                <div class="report-top">
-
-                    <div>
-
-                        <h3>@trustedmm</h3>
-
-                        <span>
-                            ID: 882721
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <p class="report-desc">
-
-                    Verified trusted middleman approved by admin.
-                    Safe for transactions and community trades.
-
-                </p>
-
-                <div class="report-buttons">
-
-                    <button onclick="window.open('https://t.me/DwcProtect')">
-
-                        OPEN TELEGRAM
-
-                    </button>
-
-                </div>
-
+            <div class="section-title">
+                <h2>Trusted Middlemen</h2>
             </div>
 
-        </div>
+            <div class="reports-grid" id="middlemenGrid">
+                <div class="report-card">
+                    <h3>Loading...</h3>
+                    <p class="report-desc">Fetching trusted middlemen.</p>
+                </div>
+            </div>
+
+        </section>
 
     </main>
+
+    <script type="module" src="../js/middleman.js"></script>
 
 </body>
 
