@@ -290,10 +290,14 @@ button{
     transition:.3s ease;
 }
 
-.report-card:hover{
-    transform:translateY(-4px);
-    border-color:#ff1a1a;
-    box-shadow:0 0 30px rgba(255,0,0,.12);
+.report-card{
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.report-buttons{
+    margin-top: auto;
 }
 
 .report-top{
