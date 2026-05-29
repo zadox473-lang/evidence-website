@@ -4,11 +4,8 @@ import {
     collection,
     getDocs,
     query,
-    where,
-    orderBy
+    where
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-/* ELEMENTS */
 
 const reportsGrid = document.querySelector(".reports-grid");
 const navButtons = document.querySelectorAll(".nav-btn");
@@ -19,34 +16,20 @@ const adminBtn = document.querySelector(".admin-btn");
 let allReports = [];
 let currentFilter = "all";
 
-/* HELPERS */
-
 function cleanAmount(amount){
     if(!amount) return 0;
     return Number(String(amount).replace(/[^0-9.]/g, "")) || 0;
 }
 
 function getReportName(report){
-    if(report.type === "fakemm"){
-        return report.fake_mm || "@unknown";
-    }
-
-    if(report.type === "impersonation"){
-        return report.fake_username || "@unknown";
-    }
-
+    if(report.type === "fakemm") return report.fake_mm || "@unknown";
+    if(report.type === "impersonation") return report.fake_username || "@unknown";
     return report.username || "@unknown";
 }
 
 function getReportTags(report){
-    if(report.type === "fakemm"){
-        return ["Fake MM", "Middleman Scam"];
-    }
-
-    if(report.type === "impersonation"){
-        return ["Impersonation", "Fake Identity"];
-    }
-
+    if(report.type === "fakemm") return ["Fake MM", "Middleman Scam"];
+    if(report.type === "impersonation") return ["Impersonation", "Fake Identity"];
     return ["Market Scam", "Buyer Scam"];
 }
 
@@ -77,7 +60,6 @@ function renderReports(reports){
                     <h3>${name}</h3>
                     <span>ID: ${report.user_id || "N/A"}</span>
                 </div>
-
                 <h4>${report.amount || "$0"}</h4>
             </div>
 
@@ -116,7 +98,7 @@ function applyFilters(){
         filtered = filtered.sort((a,b) => cleanAmount(b.amount) - cleanAmount(a.amount));
     }
 
-    const searchValue = searchInput.value.toLowerCase().trim();
+    const searchValue = searchInput?.value.toLowerCase().trim();
 
     if(searchValue){
         filtered = filtered.filter(report => {
@@ -133,32 +115,66 @@ function applyFilters(){
     renderReports(filtered);
 }
 
-/* LOAD REPORTS */
+function updateStats(){
+    const statNumbers = document.querySelectorAll(".stat-card h2");
+
+    const totalReports = allReports.length;
+    const totalScammers = allReports.filter(r => r.type === "scammer").length;
+    const totalAmount = allReports.reduce((sum,r) => sum + cleanAmount(r.amount), 0);
+
+    if(statNumbers[0]) statNumbers[0].textContent = totalReports;
+    if(statNumbers[1]) statNumbers[1].textContent = totalScammers;
+    if(statNumbers[2]) statNumbers[2].textContent = "$" + totalAmount;
+}
+
+async function updateTrustedCount(){
+    try{
+        const mmSnap = await getDocs(collection(db, "middlemen"));
+        const statNumbers = document.querySelectorAll(".stat-card h2");
+
+        if(statNumbers[3]) statNumbers[3].textContent = mmSnap.size;
+    }catch(error){
+        console.log("Trusted MM count error:", error);
+    }
+}
 
 async function loadReports(){
-    const q = query(
-        collection(db, "reports"),
-        where("status", "==", "approved"),
-        
-    );
+    try{
+        const q = query(
+            collection(db, "reports"),
+            where("status", "==", "approved")
+        );
 
-    const snapshot = await getDocs(q);
+        const snapshot = await getDocs(q);
 
-    allReports = [];
+        allReports = [];
 
-    snapshot.forEach(doc => {
-        allReports.push({
-            id: doc.id,
-            ...doc.data()
+        snapshot.forEach(doc => {
+            allReports.push({
+                id: doc.id,
+                ...doc.data()
+            });
         });
-    });
 
-    renderReports(allReports);
+        updateStats();
+        updateTrustedCount();
+        applyFilters();
+
+    }catch(error){
+        console.log("Report load error:", error);
+
+        if(reportsGrid){
+            reportsGrid.innerHTML = `
+                <div class="report-card">
+                    <h3>Database Error</h3>
+                    <p class="report-desc">${error.message}</p>
+                </div>
+            `;
+        }
+    }
 }
 
 loadReports();
-
-/* NAVIGATION */
 
 navButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -176,7 +192,6 @@ navButtons.forEach(button => {
         button.classList.add("active-nav");
 
         currentFilter = button.dataset.filter || "all";
-
         applyFilters();
     });
 });
@@ -209,90 +224,9 @@ if(categorySelect){
     });
 }
 
-/* 3D SHIELD ROTATION */
-
-const shieldPanel = document.getElementById("shieldPanel");
-const shield3d = document.getElementById("shield3d");
-
-let autoRotate = true;
-let angleY = 0;
-let angleX = 0;
-let startX = 0;
-let startY = 0;
-let baseY = 0;
-let baseX = 0;
-let dragging = false;
-
-function clamp(value, min, max){
-    return Math.max(min, Math.min(max, value));
-}
-
-function updateShield(){
-    if(!shield3d) return;
-    shield3d.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-}
-
-function animateShield(){
-    if(autoRotate){
-        angleY += 0.7;
-        angleX *= 0.96;
-        updateShield();
-    }
-
-    requestAnimationFrame(animateShield);
-}
-
-function startDrag(e){
-    dragging = true;
-    autoRotate = false;
-
-    const point = e.touches ? e.touches[0] : e;
-
-    startX = point.clientX;
-    startY = point.clientY;
-
-    baseY = angleY;
-    baseX = angleX;
-}
-
-function moveDrag(e){
-    if(!dragging) return;
-
-    e.preventDefault();
-
-    const point = e.touches ? e.touches[0] : e;
-
-    const dx = point.clientX - startX;
-    const dy = point.clientY - startY;
-
-    angleY = baseY + dx * 0.85;
-    angleX = clamp(baseX - dy * 0.28, -25, 25);
-
-    updateShield();
-}
-
-function stopDrag(){
-    if(!dragging) return;
-
-    dragging = false;
-    autoRotate = true;
-}
-
-if(shieldPanel && shield3d){
-    shieldPanel.addEventListener("mousedown", startDrag);
-    window.addEventListener("mousemove", moveDrag);
-    window.addEventListener("mouseup", stopDrag);
-
-    shieldPanel.addEventListener("touchstart", startDrag, { passive:false });
-    window.addEventListener("touchmove", moveDrag, { passive:false });
-    window.addEventListener("touchend", stopDrag);
-
-    animateShield();
-        }
 /* SHIELD FIX */
 
 const fixShield = document.getElementById("shield3d");
-
 let fixAngle = 0;
 
 function rotateShieldFix(){
