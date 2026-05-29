@@ -178,6 +178,7 @@ loadReports();
 
 navButtons.forEach(button => {
     button.addEventListener("click", () => {
+
         if(button.classList.contains("trusted-btn")){
             window.location.href = "pages/trustedmm.html";
             return;
@@ -188,11 +189,32 @@ navButtons.forEach(button => {
             return;
         }
 
+        const heroSection = document.querySelector(".hero-section");
+        const statsSection = document.querySelector(".stats-grid");
+
+        if(
+            button.dataset.filter === "scammer" ||
+            button.dataset.filter === "fakemm" ||
+            button.dataset.filter === "impersonation"
+        ){
+
+            if(heroSection) heroSection.style.display = "none";
+            if(statsSection) statsSection.style.display = "none";
+
+        }else{
+
+            if(heroSection) heroSection.style.display = "";
+            if(statsSection) statsSection.style.display = "";
+
+        }
+
         navButtons.forEach(btn => btn.classList.remove("active-nav"));
         button.classList.add("active-nav");
 
         currentFilter = button.dataset.filter || "all";
+
         applyFilters();
+
     });
 });
 
