@@ -139,7 +139,7 @@ async function loadReports(){
     const q = query(
         collection(db, "reports"),
         where("status", "==", "approved"),
-        orderBy("timestamp", "desc")
+        
     );
 
     const snapshot = await getDocs(q);
