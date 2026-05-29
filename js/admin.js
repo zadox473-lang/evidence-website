@@ -174,21 +174,27 @@ impBtns[1]?.addEventListener("click", async () => {
 
 /* MIDDLEMAN */
 
-const mmBtn = document.querySelector("#middleman .admin-submit");
+const mmBtns = document.querySelectorAll("#middleman .admin-submit");
 
-mmBtn?.addEventListener("click", async () => {
-    const { inputs, textarea } = getInputs("#middleman");
+mmBtns[0]?.addEventListener("click", async () => {
+    try {
+        const { inputs, textarea } = getInputs("#middleman");
 
-    await addDoc(collection(db, "middlemen"), {
-        username: inputs[0].value,
-        user_id: inputs[1].value,
-        telegram_link: inputs[2].value,
-        description: textarea.value,
-        timestamp: serverTimestamp()
-    });
+        await addDoc(collection(db, "middlemen"), {
+            username: inputs[0].value,
+            user_id: inputs[1].value,
+            telegram_link: inputs[2].value,
+            description: textarea.value,
+            timestamp: serverTimestamp()
+        });
 
-    alert("Middleman added");
-    loadStats();
+        alert("Middleman added successfully");
+        loadStats();
+
+    } catch (error) {
+        alert("Middleman error: " + error.message);
+        console.log(error);
+    }
 });
 
 /* STATS */
