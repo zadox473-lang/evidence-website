@@ -1,73 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appeal Request</title>
 
-    <title>Appeal</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/responsive.css">
-
 </head>
 
 <body>
 
-    <div class="admin-panel">
+<main class="admin-panel">
 
-        <div class="admin-card" style="max-width:850px;margin:auto;">
+    <div class="admin-card" style="max-width:850px;margin:auto;">
 
-            <h1 style="margin-bottom:15px;">
-                Appeal Request
-            </h1>
+        <h1 style="margin-bottom:12px;">Appeal Request</h1>
 
-            <p style="color:#888;margin-bottom:35px;">
-                Submit your appeal for admin review.
-            </p>
+        <p class="admin-muted" style="margin-bottom:30px;">
+            Submit your appeal for admin review.
+        </p>
 
-            <input 
-                type="text"
-                placeholder="@ Username"
-                class="admin-input"
-            >
+        <input id="appealUsername" class="admin-input" type="text" placeholder="@ Username">
+        <input id="appealUserId" class="admin-input" type="text" placeholder="User ID">
+        <input id="appealTelegram" class="admin-input" type="text" placeholder="Telegram Username">
+        <input id="appealProof" class="admin-input" type="url" placeholder="Proof Link">
 
-            <input 
-                type="text"
-                placeholder="User ID"
-                class="admin-input"
-            >
+        <textarea id="appealReason" class="admin-textarea" placeholder="Explain why this report is false..."></textarea>
 
-            <input 
-                type="text"
-                placeholder="Telegram Username"
-                class="admin-input"
-            >
+        <button id="submitAppealBtn" class="admin-submit">
+            SUBMIT APPEAL
+        </button>
 
-            <input 
-                type="text"
-                placeholder="Proof Link"
-                class="admin-input"
-            >
-
-            <textarea 
-                placeholder="Explain why you are not a scammer..."
-                class="admin-textarea"
-            ></textarea>
-
-            <button class="admin-submit">
-                SUBMIT APPEAL
-            </button>
-
-        </div>
+        <button class="admin-submit secondary-admin-btn" onclick="window.location.href='../index.html'">
+            BACK HOME
+        </button>
 
     </div>
 
-</body>
+</main>
 
+<script type="module" src="../js/appeal.js"></script>
+
+</body>
 </html>
