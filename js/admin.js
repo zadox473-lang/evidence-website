@@ -19,27 +19,19 @@ adminTabs.forEach(tab => {
         const target = tab.dataset.adminTab;
         if(!target) return;
 
-        document.querySelectorAll(".admin-tab").forEach(btn => {
-            btn.classList.remove("active-admin-tab");
-        });
+        document.querySelectorAll(".admin-tab").forEach(btn => btn.classList.remove("active-admin-tab"));
 
         const sidebarTab = document.querySelector(`.admin-tab[data-admin-tab="${target}"]`);
         if(sidebarTab) sidebarTab.classList.add("active-admin-tab");
 
-        adminSections.forEach(section => {
-            section.classList.remove("active-admin-section");
-        });
+        adminSections.forEach(section => section.classList.remove("active-admin-section"));
 
         const activeSection = document.getElementById(target);
         if(activeSection) activeSection.classList.add("active-admin-section");
 
-        if(target === "manage"){
-            loadManageData();
-        }
+        if(target === "manage") loadManageData();
     });
 });
-
-/* HELPERS */
 
 function getInputs(sectionId){
     const section = document.querySelector(sectionId);
@@ -48,6 +40,11 @@ function getInputs(sectionId){
         inputs: section.querySelectorAll(".admin-input"),
         textarea: section.querySelector(".admin-textarea")
     };
+}
+
+function cleanAmount(amount){
+    if(!amount) return 0;
+    return Number(String(amount).replace(/[^0-9.]/g, "")) || 0;
 }
 
 async function saveReport(type, data){
@@ -71,33 +68,41 @@ function showLink(id){
 const scammerBtns = document.querySelectorAll("#scammer .admin-submit");
 
 scammerBtns[0]?.addEventListener("click", async () => {
-    const { inputs, textarea } = getInputs("#scammer");
+    try{
+        const { inputs, textarea } = getInputs("#scammer");
 
-    await saveReport("scammer", {
-        username: inputs[0].value,
-        user_id: inputs[1].value,
-        amount: inputs[2].value,
-        description: textarea.value,
-        proof_channel: inputs[3].value
-    });
+        await saveReport("scammer", {
+            username: inputs[0].value,
+            user_id: inputs[1].value,
+            amount: inputs[2].value,
+            description: textarea.value,
+            proof_channel: inputs[3].value
+        });
 
-    alert("Scammer report posted");
-    loadStats();
+        alert("Scammer report posted");
+        loadStats();
+    }catch(error){
+        alert("Error: " + error.message);
+    }
 });
 
 scammerBtns[1]?.addEventListener("click", async () => {
-    const { inputs, textarea } = getInputs("#scammer");
+    try{
+        const { inputs, textarea } = getInputs("#scammer");
 
-    const id = await saveReport("scammer", {
-        username: inputs[0].value,
-        user_id: inputs[1].value,
-        amount: inputs[2].value,
-        description: textarea.value,
-        proof_channel: inputs[3].value
-    });
+        const id = await saveReport("scammer", {
+            username: inputs[0].value,
+            user_id: inputs[1].value,
+            amount: inputs[2].value,
+            description: textarea.value,
+            proof_channel: inputs[3].value
+        });
 
-    showLink(id);
-    loadStats();
+        showLink(id);
+        loadStats();
+    }catch(error){
+        alert("Error: " + error.message);
+    }
 });
 
 /* FAKE MM */
@@ -105,35 +110,43 @@ scammerBtns[1]?.addEventListener("click", async () => {
 const fakeMmBtns = document.querySelectorAll("#fake-mm .admin-submit");
 
 fakeMmBtns[0]?.addEventListener("click", async () => {
-    const { inputs, textarea } = getInputs("#fake-mm");
+    try{
+        const { inputs, textarea } = getInputs("#fake-mm");
 
-    await saveReport("fakemm", {
-        fake_mm: inputs[0].value,
-        user_id: inputs[1].value,
-        real_mm: inputs[2].value,
-        amount: inputs[3].value,
-        description: textarea.value,
-        proof_channel: inputs[4].value
-    });
+        await saveReport("fakemm", {
+            fake_mm: inputs[0].value,
+            user_id: inputs[1].value,
+            real_mm: inputs[2].value,
+            amount: inputs[3].value,
+            description: textarea.value,
+            proof_channel: inputs[4].value
+        });
 
-    alert("Fake MM report posted");
-    loadStats();
+        alert("Fake MM report posted");
+        loadStats();
+    }catch(error){
+        alert("Error: " + error.message);
+    }
 });
 
 fakeMmBtns[1]?.addEventListener("click", async () => {
-    const { inputs, textarea } = getInputs("#fake-mm");
+    try{
+        const { inputs, textarea } = getInputs("#fake-mm");
 
-    const id = await saveReport("fakemm", {
-        fake_mm: inputs[0].value,
-        user_id: inputs[1].value,
-        real_mm: inputs[2].value,
-        amount: inputs[3].value,
-        description: textarea.value,
-        proof_channel: inputs[4].value
-    });
+        const id = await saveReport("fakemm", {
+            fake_mm: inputs[0].value,
+            user_id: inputs[1].value,
+            real_mm: inputs[2].value,
+            amount: inputs[3].value,
+            description: textarea.value,
+            proof_channel: inputs[4].value
+        });
 
-    showLink(id);
-    loadStats();
+        showLink(id);
+        loadStats();
+    }catch(error){
+        alert("Error: " + error.message);
+    }
 });
 
 /* IMPERSONATION */
@@ -141,44 +154,57 @@ fakeMmBtns[1]?.addEventListener("click", async () => {
 const impBtns = document.querySelectorAll("#impersonation .admin-submit");
 
 impBtns[0]?.addEventListener("click", async () => {
-    const { inputs, textarea } = getInputs("#impersonation");
+    try{
+        const { inputs, textarea } = getInputs("#impersonation");
 
-    await saveReport("impersonation", {
-        fake_username: inputs[0].value,
-        real_username: inputs[1].value,
-        user_id: inputs[2].value,
-        amount: inputs[3].value,
-        description: textarea.value,
-        proof_channel: inputs[4].value
-    });
+        await saveReport("impersonation", {
+            fake_username: inputs[0].value,
+            real_username: inputs[1].value,
+            user_id: inputs[2].value,
+            amount: inputs[3].value,
+            description: textarea.value,
+            proof_channel: inputs[4].value
+        });
 
-    alert("Impersonation report posted");
-    loadStats();
+        alert("Impersonation report posted");
+        loadStats();
+    }catch(error){
+        alert("Error: " + error.message);
+    }
 });
 
 impBtns[1]?.addEventListener("click", async () => {
-    const { inputs, textarea } = getInputs("#impersonation");
+    try{
+        const { inputs, textarea } = getInputs("#impersonation");
 
-    const id = await saveReport("impersonation", {
-        fake_username: inputs[0].value,
-        real_username: inputs[1].value,
-        user_id: inputs[2].value,
-        amount: inputs[3].value,
-        description: textarea.value,
-        proof_channel: inputs[4].value
-    });
+        const id = await saveReport("impersonation", {
+            fake_username: inputs[0].value,
+            real_username: inputs[1].value,
+            user_id: inputs[2].value,
+            amount: inputs[3].value,
+            description: textarea.value,
+            proof_channel: inputs[4].value
+        });
 
-    showLink(id);
-    loadStats();
+        showLink(id);
+        loadStats();
+    }catch(error){
+        alert("Error: " + error.message);
+    }
 });
 
-/* MIDDLEMAN */
+/* SET MIDDLEMAN */
 
 const mmBtns = document.querySelectorAll("#middleman .admin-submit");
 
 mmBtns[0]?.addEventListener("click", async () => {
-    try {
+    try{
         const { inputs, textarea } = getInputs("#middleman");
+
+        if(!inputs[0].value || !inputs[1].value || !inputs[2].value){
+            alert("Fill username, user ID and Telegram link");
+            return;
+        }
 
         await addDoc(collection(db, "middlemen"), {
             username: inputs[0].value,
@@ -191,42 +217,39 @@ mmBtns[0]?.addEventListener("click", async () => {
         alert("Middleman added successfully");
         loadStats();
 
-    } catch (error) {
+    }catch(error){
         alert("Middleman error: " + error.message);
-        console.log(error);
     }
 });
 
 /* STATS */
 
-function cleanAmount(amount){
-    if(!amount) return 0;
-    return Number(String(amount).replace(/[^0-9.]/g, "")) || 0;
-}
-
 async function loadStats(){
-    const reportsSnap = await getDocs(collection(db, "reports"));
-    const mmSnap = await getDocs(collection(db, "middlemen"));
+    try{
+        const reportsSnap = await getDocs(collection(db, "reports"));
+        const mmSnap = await getDocs(collection(db, "middlemen"));
 
-    let totalAmount = 0;
+        let totalAmount = 0;
 
-    reportsSnap.forEach(item => {
-        totalAmount += cleanAmount(item.data().amount);
-    });
+        reportsSnap.forEach(item => {
+            totalAmount += cleanAmount(item.data().amount);
+        });
 
-    const cards = document.querySelectorAll(".admin-stat-card h2");
+        const cards = document.querySelectorAll(".admin-stat-card h2");
 
-    if(cards[0]) cards[0].textContent = reportsSnap.size;
-    if(cards[1]) cards[1].textContent = reportsSnap.size;
-    if(cards[2]) cards[2].textContent = "$" + totalAmount;
-    if(cards[3]) cards[3].textContent = mmSnap.size;
+        if(cards[0]) cards[0].textContent = reportsSnap.size;
+        if(cards[1]) cards[1].textContent = reportsSnap.size;
+        if(cards[2]) cards[2].textContent = "$" + totalAmount;
+        if(cards[3]) cards[3].textContent = mmSnap.size;
+    }catch(error){
+        console.log(error);
+    }
 }
 
 /* MANAGE DATA */
 
 async function loadManageData(){
     const manageList = document.querySelector("#manage .manage-list");
-
     if(!manageList) return;
 
     manageList.innerHTML = "";
