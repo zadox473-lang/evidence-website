@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Admin Login</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,39 +11,71 @@
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/responsive.css">
-
 </head>
 
 <body>
 
     <div class="admin-panel">
-
         <div class="admin-card" style="max-width:500px;margin:auto;">
 
-            <h1 style="margin-bottom:30px;">
-                Admin Login
-            </h1>
+            <h1 style="margin-bottom:30px;">Admin Login</h1>
 
             <input 
-                type="text"
-                placeholder="Admin ID"
+                id="email"
+                type="email"
+                placeholder="Admin Email"
                 class="admin-input"
             >
 
             <input 
+                id="password"
                 type="password"
                 placeholder="Password"
                 class="admin-input"
             >
 
-            <button class="admin-submit" style="width:100%;">
+            <button id="loginBtn" class="admin-submit" style="width:100%;">
                 Login
             </button>
 
-        </div>
+            <p id="loginError" style="color:#ff4d4d;margin-top:18px;font-size:14px;"></p>
 
+        </div>
     </div>
 
-</body>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+        const firebaseConfig = {
+            apiKey: "AIzaSyCkMVWQ4NCqV7yJIUwBwu2NImetw7zUJeY",
+            authDomain: "scammer-database.firebaseapp.com",
+            projectId: "scammer-database",
+            storageBucket: "scammer-database.firebasestorage.app",
+            messagingSenderId: "257014278130",
+            appId: "1:257014278130:web:1c527b320f36b4d6c5ed6b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const loginBtn = document.getElementById("loginBtn");
+        const errorBox = document.getElementById("loginError");
+
+        loginBtn.addEventListener("click", async () => {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            errorBox.textContent = "";
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.href = "admin.html";
+            } catch (error) {
+                errorBox.textContent = "Invalid email or password.";
+            }
+        });
+    </script>
+
+</body>
 </html>
