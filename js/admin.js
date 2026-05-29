@@ -59,7 +59,8 @@ async function saveReport(type, data){
 }
 
 function showLink(id){
-    const link = `${window.location.origin}/pages/report.html?id=${id}`;
+    const basePath = window.location.pathname.replace("/pages/admin.html", "");
+const link = `${window.location.origin}${basePath}/pages/report.html?id=${id}`;
     prompt("Generated Report Link:", link);
 }
 
