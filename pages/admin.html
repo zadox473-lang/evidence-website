@@ -16,207 +16,196 @@
 
 <body>
 
-    <main class="admin-panel">
+<main class="admin-panel">
 
-        <header class="admin-header">
-            <div>
-                <h1>Admin Panel</h1>
-                <p>Manage scammer database, middlemen and appeals.</p>
-            </div>
+    <header class="admin-header">
+        <div>
+            <h1>Admin Panel</h1>
+            <p>Manage scammer database, middlemen and appeals.</p>
+        </div>
 
-            <div class="admin-header-actions">
-                <button class="admin-top-btn" data-admin-tab="notifications">
-                    Notifications
-                </button>
+        <div class="admin-header-actions">
+            <button class="admin-top-btn" data-admin-tab="notifications">
+                Notifications
+            </button>
 
-                <button class="admin-top-btn" onclick="window.location.href='../index.html'">
-                    Back Home
-                </button>
-            </div>
-        </header>
+            <button class="admin-top-btn" onclick="window.location.href='../index.html'">
+                Back Home
+            </button>
+        </div>
+    </header>
 
-        <section class="admin-stats">
-            <div class="admin-stat-card">
-                <h2>0</h2>
-                <p>Total Reports</p>
-            </div>
+    <section class="admin-stats">
+        <div class="admin-stat-card">
+            <h2>0</h2>
+            <p>Total Reports</p>
+        </div>
 
-            <div class="admin-stat-card">
-                <h2>0</h2>
-                <p>Total Scammers</p>
-            </div>
+        <div class="admin-stat-card">
+            <h2>0</h2>
+            <p>Total Scammers</p>
+        </div>
 
-            <div class="admin-stat-card">
-                <h2>$0</h2>
-                <p>Total Amount</p>
-            </div>
+        <div class="admin-stat-card">
+            <h2>$0</h2>
+            <p>Total Amount</p>
+        </div>
 
-            <div class="admin-stat-card">
-                <h2>0</h2>
-                <p>Trusted MM</p>
-            </div>
-        </section>
+        <div class="admin-stat-card">
+            <h2>0</h2>
+            <p>Trusted MM</p>
+        </div>
+    </section>
 
-        <section class="admin-layout">
+    <section class="admin-layout">
 
-            <aside class="admin-tabs">
-                <button class="admin-tab active-admin-tab" data-admin-tab="scammer">
-                    Scammer Form
-                </button>
+        <aside class="admin-tabs">
 
-                <button class="admin-tab" data-admin-tab="fake-mm">
-                    Fake MM Form
-                </button>
+            <button class="admin-tab active-admin-tab" data-admin-tab="scammer">
+                Scammer Form
+            </button>
 
-                <button class="admin-tab" data-admin-tab="impersonation">
-                    Impersonation Form
-                </button>
+            <button class="admin-tab" data-admin-tab="fake-mm">
+                Fake MM Form
+            </button>
 
-                <button class="admin-tab" data-admin-tab="middleman">
-                    Set Middleman
-                </button>
+            <button class="admin-tab" data-admin-tab="impersonation">
+                Impersonation Form
+            </button>
 
-                <button class="admin-tab" data-admin-tab="manage">
-                    Manage Data
-                </button>
+            <button class="admin-tab" data-admin-tab="middleman">
+                Set Middleman
+            </button>
 
-                <button class="admin-tab" data-admin-tab="notifications">
-                    Notifications
-                </button>
-            </aside>
+            <button class="admin-tab" data-admin-tab="manage">
+                Manage Data
+            </button>
 
-            <div class="admin-content">
+            <button class="admin-tab" data-admin-tab="notifications">
+                Notifications
+            </button>
 
-                <section class="admin-section active-admin-section" id="scammer">
-                    <div class="admin-card">
-                        <h2>Scammer Form</h2>
-                        <p class="admin-muted">Post verified scammer report to public database.</p>
+        </aside>
 
-                        <input class="admin-input" type="text" placeholder="@ Username">
-                        <input class="admin-input" type="text" placeholder="User ID">
-                        <input class="admin-input" type="text" placeholder="Scam Amount">
-                        <textarea class="admin-textarea" placeholder="Description"></textarea>
-                        <input class="admin-input" type="url" placeholder="Proof Channel Link">
+        <div class="admin-content">
 
-                        <div class="admin-actions">
-                            <button class="admin-submit">POST</button>
-                            <button class="admin-submit secondary-admin-btn">GENERATE LINK</button>
-                        </div>
+            <section class="admin-section active-admin-section" id="scammer">
+                <div class="admin-card">
+                    <h2>Scammer Form</h2>
+                    <p class="admin-muted">Post verified scammer report to public database.</p>
+
+                    <input class="admin-input" type="text" placeholder="@ Username">
+                    <input class="admin-input" type="text" placeholder="User ID">
+                    <input class="admin-input" type="text" placeholder="Scam Amount">
+                    <textarea class="admin-textarea" placeholder="Description"></textarea>
+                    <input class="admin-input" type="url" placeholder="Proof Channel Link">
+
+                    <div class="admin-actions">
+                        <button class="admin-submit">POST</button>
+                        <button class="admin-submit secondary-admin-btn">GENERATE LINK</button>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section class="admin-section" id="fake-mm">
-                    <div class="admin-card">
-                        <h2>Fake MM Form</h2>
-                        <p class="admin-muted">Add fake middleman report after verification.</p>
+            <section class="admin-section" id="fake-mm">
+                <div class="admin-card">
+                    <h2>Fake MM Form</h2>
+                    <p class="admin-muted">Add fake middleman report after verification.</p>
 
-                        <input class="admin-input" type="text" placeholder="Fake MM @">
-                        <input class="admin-input" type="text" placeholder="User ID">
-                        <input class="admin-input" type="text" placeholder="Real MM @">
-                        <input class="admin-input" type="text" placeholder="Scam Amount">
-                        <textarea class="admin-textarea" placeholder="Description"></textarea>
-                        <input class="admin-input" type="url" placeholder="Proof Channel Link">
+                    <input class="admin-input" type="text" placeholder="Fake MM @">
+                    <input class="admin-input" type="text" placeholder="User ID">
+                    <input class="admin-input" type="text" placeholder="Real MM @">
+                    <input class="admin-input" type="text" placeholder="Scam Amount">
+                    <textarea class="admin-textarea" placeholder="Description"></textarea>
+                    <input class="admin-input" type="url" placeholder="Proof Channel Link">
 
-                        <div class="admin-actions">
-                            <button class="admin-submit">POST</button>
-                            <button class="admin-submit secondary-admin-btn">GENERATE LINK</button>
-                        </div>
+                    <div class="admin-actions">
+                        <button class="admin-submit">POST</button>
+                        <button class="admin-submit secondary-admin-btn">GENERATE LINK</button>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section class="admin-section" id="impersonation">
-                    <div class="admin-card">
-                        <h2>Impersonation Form</h2>
-                        <p class="admin-muted">Add fake identity or impersonation report.</p>
+            <section class="admin-section" id="impersonation">
+                <div class="admin-card">
+                    <h2>Impersonation Form</h2>
+                    <p class="admin-muted">Add fake identity or impersonation report.</p>
 
-                        <input class="admin-input" type="text" placeholder="Fake Username">
-                        <input class="admin-input" type="text" placeholder="Real Username">
-                        <input class="admin-input" type="text" placeholder="User ID">
-                        <input class="admin-input" type="text" placeholder="Scam Amount">
-                        <textarea class="admin-textarea" placeholder="Description"></textarea>
-                        <input class="admin-input" type="url" placeholder="Proof Channel Link">
+                    <input class="admin-input" type="text" placeholder="Fake Username">
+                    <input class="admin-input" type="text" placeholder="Real Username">
+                    <input class="admin-input" type="text" placeholder="User ID">
+                    <input class="admin-input" type="text" placeholder="Scam Amount">
+                    <textarea class="admin-textarea" placeholder="Description"></textarea>
+                    <input class="admin-input" type="url" placeholder="Proof Channel Link">
 
-                        <div class="admin-actions">
-                            <button class="admin-submit">POST</button>
-                            <button class="admin-submit secondary-admin-btn">GENERATE LINK</button>
-                        </div>
+                    <div class="admin-actions">
+                        <button class="admin-submit">POST</button>
+                        <button class="admin-submit secondary-admin-btn">GENERATE LINK</button>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section class="admin-section" id="middleman">
-                    <div class="admin-card">
-                        <h2>Set Middleman</h2>
-                        <p class="admin-muted">Add trusted middleman profile to Trusted MM section.</p>
+            <section class="admin-section" id="middleman">
+                <div class="admin-card">
+                    <h2>Set Middleman</h2>
+                    <p class="admin-muted">Add trusted middleman profile to Trusted MM section.</p>
 
-                        <input class="admin-input" type="text" placeholder="@ Username">
-                        <input class="admin-input" type="text" placeholder="User ID">
-                        <input class="admin-input" type="url" placeholder="Telegram Link">
-                        <textarea class="admin-textarea" placeholder="Description"></textarea>
+                    <input class="admin-input" type="text" placeholder="@ Username">
+                    <input class="admin-input" type="text" placeholder="User ID">
+                    <input class="admin-input" type="url" placeholder="Telegram Link">
+                    <textarea class="admin-textarea" placeholder="Description"></textarea>
 
-                        <div class="admin-actions">
-                            <button class="admin-submit">POST</button>
-                            <button class="admin-submit danger-admin-btn">DELETE</button>
-                        </div>
+                    <div class="admin-actions">
+                        <button id="middlemanPostBtn" class="admin-submit">
+                            POST
+                        </button>
+
+                        <button id="middlemanDeleteBtn" class="admin-submit danger-admin-btn">
+                            DELETE
+                        </button>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section class="admin-section" id="manage">
-                    <div class="admin-card">
-                        <h2>Manage Data</h2>
-                        <p class="admin-muted">Delete reports and middlemen from database.</p>
+            <section class="admin-section" id="manage">
+                <div class="admin-card">
+                    <h2>Manage Data</h2>
+                    <p class="admin-muted">Delete reports and middlemen from database.</p>
 
-                        <div class="manage-list">
-                            <div class="manage-item">
-                                <div>
-                                    <h3>@sampleuser</h3>
-                                    <p>Scammer Report</p>
-                                </div>
-
-                                <button class="admin-submit danger-admin-btn">DELETE</button>
-                            </div>
-
-                            <div class="manage-item">
-                                <div>
-                                    <h3>@trustedmm</h3>
-                                    <p>Trusted Middleman</p>
-                                </div>
-
-                                <button class="admin-submit danger-admin-btn">DELETE</button>
+                    <div class="manage-list">
+                        <div class="manage-item">
+                            <div>
+                                <h3>Loading...</h3>
+                                <p>Open Manage Data to load records.</p>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section class="admin-section" id="notifications">
-                    <div class="admin-card">
-                        <h2>Notifications</h2>
-                        <p class="admin-muted">Appeal requests will appear here.</p>
+            <section class="admin-section" id="notifications">
+                <div class="admin-card">
+                    <h2>Notifications</h2>
+                    <p class="admin-muted">Appeal requests will appear here.</p>
 
-                        <div class="manage-list">
-                            <div class="manage-item appeal-item">
-                                <div>
-                                    <h3>@appealuser</h3>
-                                    <p>User claims the report is false. Proof link submitted for review.</p>
-                                </div>
-
-                                <div class="admin-actions small-actions">
-                                    <button class="admin-submit">APPROVE</button>
-                                    <button class="admin-submit secondary-admin-btn">REJECT</button>
-                                    <button class="admin-submit danger-admin-btn">REMOVE REPORT</button>
-                                </div>
+                    <div class="manage-list">
+                        <div class="manage-item appeal-item">
+                            <div>
+                                <h3>No notifications</h3>
+                                <p>Appeal requests are not available right now.</p>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-            </div>
+        </div>
 
-        </section>
+    </section>
 
-    </main>
+</main>
 
-    <script type="module" src="../js/admin.js"></script>
+<script type="module" src="../js/admin.js"></script>
 
 </body>
-
-</html>
+                        </html>
