@@ -496,3 +496,21 @@ button{
         width:100%;
     }
 }
+.report-buttons button:nth-child(1){
+    background:#0c0c0c;
+    border:1px solid rgba(255,255,255,.14);
+    color:#fff;
+}
+
+.report-buttons button:nth-child(2),
+.proof-btn{
+    background:linear-gradient(180deg,#ff1a1a,#b00000);
+    border:1px solid #ff1a1a;
+    color:#fff;
+    box-shadow:0 0 22px rgba(255,0,0,.28);
+}
+
+.report-buttons button:nth-child(2):hover,
+.proof-btn:hover{
+    box-shadow:0 0 35px rgba(255,0,0,.45);
+}
