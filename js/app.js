@@ -7,8 +7,6 @@ import {
     where
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* ELEMENTS */
-
 const reportsGrid = document.querySelector(".reports-grid");
 const navButtons = document.querySelectorAll(".nav-btn");
 const searchInput = document.querySelector(".search-section input");
@@ -19,8 +17,6 @@ const statsSection = document.querySelector(".stats-grid");
 
 let allReports = [];
 let currentFilter = "all";
-
-/* HELPERS */
 
 function cleanAmount(amount){
     if(!amount) return 0;
@@ -40,27 +36,17 @@ function getReportTags(report){
 }
 
 function setHeroVisibility(){
-
     const hideIntro =
         currentFilter === "scammer" ||
         currentFilter === "fakemm" ||
         currentFilter === "impersonation" ||
         currentFilter === "top";
 
-    document
-        .querySelectorAll(".hero-section, .stats-grid")
-        .forEach(el => {
-
-            if(el){
-                el.style.setProperty(
-                    "display",
-                    hideIntro ? "none" : "",
-                    "important"
-                );
-            }
-
-        });
-
+    document.querySelectorAll(".hero-section, .stats-grid").forEach(el => {
+        if(el){
+            el.style.setProperty("display", hideIntro ? "none" : "", "important");
+        }
+    });
 }
 
 function renderReports(reports){
@@ -80,6 +66,9 @@ function renderReports(reports){
         const name = getReportName(report);
         const tags = getReportTags(report);
 
+        const verifyStatus = report.verify_status === "verified" ? "verified" : "unverified";
+        const verifyText = verifyStatus === "verified" ? "VERIFIED" : "UNVERIFIED";
+
         const card = document.createElement("div");
         card.className = "report-card";
         card.dataset.category = report.type;
@@ -92,6 +81,10 @@ function renderReports(reports){
                 </div>
 
                 <h4>${report.amount || "$0"}</h4>
+            </div>
+
+            <div class="report-status ${verifyStatus}">
+                ${verifyText}
             </div>
 
             <p class="report-desc">
@@ -170,8 +163,6 @@ async function updateTrustedCount(){
     }
 }
 
-/* LOAD REPORTS */
-
 async function loadReports(){
     try{
         const q = query(
@@ -209,8 +200,6 @@ async function loadReports(){
 }
 
 loadReports();
-
-/* NAVIGATION */
 
 navButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -282,6 +271,9 @@ function rotateShieldFix(){
 }
 
 rotateShieldFix();
+
+/* DESKTOP NOTICE */
+
 function closeDesktopNotice(){
     document.getElementById("desktopNotice").style.display = "none";
 }
