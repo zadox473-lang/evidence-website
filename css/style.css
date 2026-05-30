@@ -578,3 +578,39 @@ button{
     }
 
 }
+.stat-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.stat-icon{
+    width:105px;
+    height:105px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,0,0,.05);
+    animation:statGlow 3s ease-in-out infinite;
+}
+
+.stat-icon img{
+    width:92px;
+    height:92px;
+    object-fit:contain;
+    border-radius:50%;
+    filter:
+        drop-shadow(0 0 8px rgba(255,0,0,.55))
+        drop-shadow(0 0 18px rgba(255,0,0,.35));
+}
+
+@keyframes statGlow{
+    0%,100%{
+        box-shadow:0 0 14px rgba(255,0,0,.18);
+    }
+    50%{
+        box-shadow:0 0 28px rgba(255,0,0,.38);
+    }
+}
