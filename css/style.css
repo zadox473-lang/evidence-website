@@ -655,3 +655,21 @@ button{
     max-height:none;
     display:block;
 }
+.full-report-desc{
+    color:#d6d6d6;
+    line-height:1.8;
+    white-space:pre-wrap;
+    overflow:visible;
+    text-overflow:unset;
+    max-height:none;
+    display:block;
+    margin:24px 0 28px;
+}
+
+main .report-card{
+    height:auto !important;
+}
+
+main .report-buttons{
+    margin-top:25px !important;
+}
