@@ -646,3 +646,12 @@ button{
     border-radius:10px;
     cursor:pointer;
 }
+.full-report-desc{
+    color:#d6d6d6;
+    line-height:1.9;
+    white-space:normal;
+    overflow:visible;
+    text-overflow:unset;
+    max-height:none;
+    display:block;
+}
