@@ -5,6 +5,7 @@ import {
     addDoc,
     getDocs,
     deleteDoc,
+    updateDoc,
     doc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -30,12 +31,14 @@ adminTabs.forEach(tab => {
         if(activeSection) activeSection.classList.add("active-admin-section");
 
         if(target === "manage") loadManageData();
+        if(target === "notifications") loadAppeals();
     });
 });
 
+/* HELPERS */
+
 function getInputs(sectionId){
     const section = document.querySelector(sectionId);
-
     return {
         inputs: section.querySelectorAll(".admin-input"),
         textarea: section.querySelector(".admin-textarea")
@@ -51,6 +54,7 @@ async function saveReport(type, data){
     const docRef = await addDoc(collection(db, "reports"), {
         type,
         status: "approved",
+        verify_status: "unverified",
         timestamp: serverTimestamp(),
         ...data
     });
@@ -60,7 +64,7 @@ async function saveReport(type, data){
 
 function showLink(id){
     const basePath = window.location.pathname.replace("/pages/admin.html", "");
-const link = `${window.location.origin}${basePath}/pages/report.html?id=${id}`;
+    const link = `${window.location.origin}${basePath}/pages/report.html?id=${id}`;
     prompt("Generated Report Link:", link);
 }
 
@@ -82,6 +86,7 @@ scammerBtns[0]?.addEventListener("click", async () => {
 
         alert("Scammer report posted");
         loadStats();
+
     }catch(error){
         alert("Error: " + error.message);
     }
@@ -101,6 +106,7 @@ scammerBtns[1]?.addEventListener("click", async () => {
 
         showLink(id);
         loadStats();
+
     }catch(error){
         alert("Error: " + error.message);
     }
@@ -125,6 +131,7 @@ fakeMmBtns[0]?.addEventListener("click", async () => {
 
         alert("Fake MM report posted");
         loadStats();
+
     }catch(error){
         alert("Error: " + error.message);
     }
@@ -145,6 +152,7 @@ fakeMmBtns[1]?.addEventListener("click", async () => {
 
         showLink(id);
         loadStats();
+
     }catch(error){
         alert("Error: " + error.message);
     }
@@ -169,6 +177,7 @@ impBtns[0]?.addEventListener("click", async () => {
 
         alert("Impersonation report posted");
         loadStats();
+
     }catch(error){
         alert("Error: " + error.message);
     }
@@ -189,6 +198,7 @@ impBtns[1]?.addEventListener("click", async () => {
 
         showLink(id);
         loadStats();
+
     }catch(error){
         alert("Error: " + error.message);
     }
@@ -196,49 +206,27 @@ impBtns[1]?.addEventListener("click", async () => {
 
 /* SET MIDDLEMAN */
 
-const mmBtns = document.querySelectorAll("#middleman .admin-submit");
+const middlemanPostBtn = document.getElementById("middlemanPostBtn");
 
-const middlemanPostBtn =
-document.getElementById("middlemanPostBtn");
+middlemanPostBtn?.addEventListener("click", async () => {
+    try{
+        const { inputs, textarea } = getInputs("#middleman");
 
-middlemanPostBtn?.addEventListener(
-    "click",
-    async () => {
+        await addDoc(collection(db, "middlemen"), {
+            username: inputs[0].value,
+            user_id: inputs[1].value,
+            telegram_link: inputs[2].value,
+            description: textarea.value,
+            timestamp: serverTimestamp()
+        });
 
-        try{
+        alert("Middleman added successfully");
+        loadStats();
 
-            const { inputs, textarea } =
-            getInputs("#middleman");
-
-            await addDoc(
-                collection(db, "middlemen"),
-                {
-                    username: inputs[0].value,
-                    user_id: inputs[1].value,
-                    telegram_link: inputs[2].value,
-                    description: textarea.value,
-                    timestamp: serverTimestamp()
-                }
-            );
-
-            alert("Middleman added successfully");
-
-            loadStats();
-
-        }
-        catch(error){
-
-            alert(
-                "Middleman Error: " +
-                error.message
-            );
-
-            console.log(error);
-
-        }
-
+    }catch(error){
+        alert("Middleman Error: " + error.message);
     }
-);
+});
 
 /* STATS */
 
@@ -259,6 +247,7 @@ async function loadStats(){
         if(cards[1]) cards[1].textContent = reportsSnap.size;
         if(cards[2]) cards[2].textContent = "$" + totalAmount;
         if(cards[3]) cards[3].textContent = mmSnap.size;
+
     }catch(error){
         console.log(error);
     }
@@ -283,16 +272,30 @@ async function loadManageData(){
             data.fake_username ||
             "@unknown";
 
+        const status = data.verify_status === "verified" ? "verified" : "unverified";
+        const statusText = status === "verified" ? "VERIFIED" : "UNVERIFIED";
+        const nextStatus = status === "verified" ? "unverified" : "verified";
+        const buttonText = status === "verified" ? "SET UNVERIFIED" : "SET VERIFIED";
+
         manageList.innerHTML += `
             <div class="manage-item">
                 <div>
                     <h3>${name}</h3>
                     <p>${data.type || "report"} | ${data.amount || "$0"}</p>
+                    <span class="report-status ${status}">
+                        ${statusText}
+                    </span>
                 </div>
 
-                <button class="admin-submit danger-admin-btn" onclick="deleteReport('${item.id}')">
-                    DELETE REPORT
-                </button>
+                <div class="admin-actions small-actions">
+                    <button class="admin-submit secondary-admin-btn" onclick="toggleVerifyStatus('${item.id}', '${nextStatus}')">
+                        ${buttonText}
+                    </button>
+
+                    <button class="admin-submit danger-admin-btn" onclick="deleteReport('${item.id}')">
+                        DELETE REPORT
+                    </button>
+                </div>
             </div>
         `;
     });
@@ -317,6 +320,15 @@ async function loadManageData(){
     });
 }
 
+window.toggleVerifyStatus = async function(id, status){
+    await updateDoc(doc(db, "reports", id), {
+        verify_status: status
+    });
+
+    alert("Report status updated");
+    loadManageData();
+};
+
 window.deleteReport = async function(id){
     if(!confirm("Delete this report?")) return;
 
@@ -337,12 +349,10 @@ window.deleteMiddleman = async function(id){
     loadStats();
 };
 
-loadStats();
-/* NOTIFICATIONS / APPEALS */
+/* APPEALS */
 
 async function loadAppeals(){
     const notificationList = document.querySelector("#notifications .manage-list");
-
     if(!notificationList) return;
 
     notificationList.innerHTML = "";
@@ -416,3 +426,5 @@ window.deleteAppeal = async function(id){
     alert("Appeal deleted");
     loadAppeals();
 };
+
+loadStats();
