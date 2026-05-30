@@ -524,3 +524,57 @@ button{
 .proof-btn:hover{
     box-shadow:0 0 35px rgba(255,0,0,.45);
 }
+.simple-footer{
+    padding: 35px 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    margin-bottom: 20px;
+}
+
+.footer-links a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.footer-links a:hover{
+    opacity: .8;
+}
+
+.footer-info h3{
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.footer-info p{
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.footer-info span{
+    color: #bdbdbd;
+    font-size: 13px;
+}
+
+@media(max-width:768px){
+
+    .footer-links{
+        gap: 25px;
+    }
+
+    .footer-info h3{
+        font-size: 18px;
+    }
+
+}
