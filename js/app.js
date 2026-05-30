@@ -282,3 +282,8 @@ function rotateShieldFix(){
 }
 
 rotateShieldFix();
+function closeDesktopNotice(){
+    document.getElementById("desktopNotice").style.display = "none";
+}
+
+window.closeDesktopNotice = closeDesktopNotice;
