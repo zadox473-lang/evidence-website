@@ -15,6 +15,7 @@ const reportDescription = document.getElementById("reportDescription");
 const tagOne = document.getElementById("tagOne");
 const tagTwo = document.getElementById("tagTwo");
 const evidenceBtn = document.getElementById("evidenceBtn");
+const reportCard = document.querySelector(".report-card");
 
 function getName(data){
     if(data.type === "fakemm") return data.fake_mm || "@unknown";
@@ -57,6 +58,27 @@ async function loadReport(){
         }
 
         const data = snap.data();
+        const verifyStatus =
+data.verify_status === "verified"
+? "verified"
+: "unverified";
+
+const verifyText =
+verifyStatus === "verified"
+? "VERIFIED"
+: "UNVERIFIED";
+
+const badge = document.createElement("div");
+
+badge.className =
+`report-status ${verifyStatus}`;
+
+badge.textContent = verifyText;
+
+reportDescription.parentNode.insertBefore(
+    badge,
+    reportDescription
+);
 
         reportName.textContent = getName(data);
         reportUserId.textContent = "ID: " + (data.user_id || "N/A");
