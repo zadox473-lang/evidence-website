@@ -699,3 +699,20 @@ main .report-buttons{
     border:1px solid rgba(255,0,0,.35);
     box-shadow:0 0 18px rgba(255,0,0,.25);
 }
+.report-meta{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:10px;
+}
+
+.report-meta span{
+    color:#d8c98a;
+    font-size:13px;
+    font-weight:600;
+}
+
+.report-meta h4{
+    color:#27d267;
+    font-size:22px;
+}
