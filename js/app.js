@@ -68,6 +68,20 @@ function renderReports(reports){
 
         const verifyStatus = report.verify_status === "verified" ? "verified" : "unverified";
         const verifyText = verifyStatus === "verified" ? "VERIFIED" : "UNVERIFIED";
+        let reportDate = "Unknown Date";
+
+if(report.timestamp){
+    const date = report.timestamp.toDate();
+
+    reportDate = date.toLocaleDateString(
+        "en-US",
+        {
+            year:"numeric",
+            month:"long",
+            day:"numeric"
+        }
+    );
+}
 
         const card = document.createElement("div");
         card.className = "report-card";
@@ -80,7 +94,10 @@ function renderReports(reports){
                     <span>ID: ${report.user_id || "N/A"}</span>
                 </div>
 
-                <h4>${report.amount || "$0"}</h4>
+                <div class="report-meta">
+    <span>${reportDate}</span>
+    <h4>${report.amount || "$0"}</h4>
+</div>
             </div>
 
             <div class="report-status ${verifyStatus}">
