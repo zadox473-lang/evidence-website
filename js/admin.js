@@ -1,4 +1,4 @@
-import { db } from "./firebase.js";
+import { db, auth } from "./firebase.js";
 
 import {
     collection,
@@ -10,7 +10,19 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* TABS */
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const ADMIN_EMAIL = "admin@gmail.com";
+
+onAuthStateChanged(auth, (user) => {
+    if (!user || user.email !== ADMIN_EMAIL) {
+        signOut(auth);
+        window.location.href = "login.html";
+    }
+});
 
 const adminTabs = document.querySelectorAll(".admin-tab, .admin-top-btn[data-admin-tab]");
 const adminSections = document.querySelectorAll(".admin-section");
@@ -34,8 +46,6 @@ adminTabs.forEach(tab => {
         if(target === "notifications") loadAppeals();
     });
 });
-
-/* HELPERS */
 
 function getInputs(sectionId){
     const section = document.querySelector(sectionId);
@@ -281,7 +291,7 @@ async function loadManageData(){
             <div class="manage-item">
                 <div>
                     <h3>${name}</h3>
-                    <p>${data.type || "report"} | ${data.amount || "$0"}</p>
+                    <p>${data.type || "report"} | ${data.amount || "$0"} | ID: ${data.user_id || "N/A"}</p>
                     <span class="report-status ${status}">
                         ${statusText}
                     </span>
@@ -309,7 +319,7 @@ async function loadManageData(){
             <div class="manage-item">
                 <div>
                     <h3>${data.username || "@middleman"}</h3>
-                    <p>Trusted Middleman</p>
+                    <p>Trusted Middleman | ID: ${data.user_id || "N/A"}</p>
                 </div>
 
                 <button class="admin-submit danger-admin-btn" onclick="deleteMiddleman('${item.id}')">
@@ -426,5 +436,19 @@ window.deleteAppeal = async function(id){
     alert("Appeal deleted");
     loadAppeals();
 };
+
+/* MANAGE SEARCH */
+
+document.addEventListener("input", function(e){
+    if(e.target.id !== "manageSearch") return;
+
+    const value = e.target.value.toLowerCase().trim();
+    const items = document.querySelectorAll("#manage .manage-item");
+
+    items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = text.includes(value) ? "flex" : "none";
+    });
+});
 
 loadStats();
